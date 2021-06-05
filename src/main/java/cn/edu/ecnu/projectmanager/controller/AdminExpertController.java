@@ -16,7 +16,7 @@ public class AdminExpertController {
     ExpertServiceImpl expertService;
     @GetMapping("/info")
     @ResponseBody
-    public PageJson<Expert> info(Integer expertId){
+    public PageJson<Expert> info(String expertId){
         Expert expert = expertService.findById(expertId);
         PageJson<Expert> pageJson = new PageJson<>();
         if(expert != null){
@@ -39,7 +39,7 @@ public class AdminExpertController {
     }
     @PostMapping("/delete")
     @ResponseBody
-    public JsonResult delete(@RequestParam Integer expertId){
+    public JsonResult delete(@RequestParam String expertId){
         try {
             expertService.deleteById(expertId);
         }catch (Exception e){

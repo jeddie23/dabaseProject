@@ -10,7 +10,7 @@ import java.util.List;
 public interface StudentMapper {
     @ResultType(Student.class)
     @Select("select * from student where stu_id=#{stu_id};")
-    Student findById(Integer stu_id);
+    Student findById(String stu_id);
 
     @ResultType(Student.class)
     @Select("select * from student where stu_name=#{stu_name}")
@@ -23,7 +23,7 @@ public interface StudentMapper {
     //通过studentID查看他的所有项目
     @ResultType(Project.class)
     @Select("select * from project where pro_id in (select pro_id from pro_stu where stu_id=#{stu_id});")
-    List<Project> findProjectByStudentId(@Param("stu_id") Integer stu_id);
+    List<Project> findProjectByStudentId(@Param("stu_id") String stu_id);
 
 
     // Create
@@ -37,7 +37,7 @@ public interface StudentMapper {
 
     // Delete
     @Delete("delete from student where stu_id=#{stu_id};")
-    int deleteStudentById(@Param("stu_id") Integer stu_id);
+    int deleteStudentById(@Param("stu_id") String stu_id);
 
     @Select("select * from student")
     List<Student> getAllStudent();

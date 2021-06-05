@@ -15,7 +15,7 @@ public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//primary key
     @Column(name = "adm_id")//login id
-    private Integer adm_id;
+    private String adm_id;
 
     @Column(name = "password", nullable = false)
     private String password;

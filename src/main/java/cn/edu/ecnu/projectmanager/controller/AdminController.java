@@ -18,7 +18,7 @@ public class AdminController {
     @GetMapping("/admin/info")
     @ResponseBody
     public PageJson<Admin> personalInfo(@SessionAttribute("user") Admin admin){
-        Admin adminNew = adminService.findById(admin.getId());
+        Admin adminNew = adminService.findById(admin.getAdm_id());
         PageJson<Admin> page = new PageJson<>();
         page.setCount(1);
         page.getData().add(adminNew);
@@ -30,7 +30,7 @@ public class AdminController {
     @ResponseBody
     public JsonResult update(@SessionAttribute("user")Admin adminOld, @RequestBody Admin admin){
         adminOld.setPassword(admin.getPassword());
-        adminOld.setName(admin.getName());
+        adminOld.setAmd_name(admin.getAmd_name());
         adminOld.setPhone(adminOld.getPhone());
         try{
             adminService.update(adminOld);

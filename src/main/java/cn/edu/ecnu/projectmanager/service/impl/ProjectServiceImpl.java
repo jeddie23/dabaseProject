@@ -2,7 +2,7 @@ package cn.edu.ecnu.projectmanager.service.impl;
 
 import cn.edu.ecnu.projectmanager.entity.File;
 import cn.edu.ecnu.projectmanager.entity.Project;
-import cn.edu.ecnu.projectmanager.entity.Pro_stu;
+import cn.edu.ecnu.projectmanager.entity.Team;
 import cn.edu.ecnu.projectmanager.mapper.ProjectMapper;
 import cn.edu.ecnu.projectmanager.mapper.StudentMapper;
 import cn.edu.ecnu.projectmanager.mapper.TeacherMapper;
@@ -27,8 +27,8 @@ public class ProjectServiceImpl implements ProjectService {
     private TeamMapper teamMapper;
 
     @Override
-    public Pro_stu getProjectTeam(Integer projectId) {
-        Pro_stu team = projectMapper.findTeamByLeader_id(projectMapper.findProjectById(projectId).getLeader_id());
+    public Team getProjectTeam(Integer projectId) {
+        Team team = teamMapper.findTeamById(projectMapper.findProjectById(projectId).getTeam_id());
         return team;
     }
 
@@ -53,10 +53,10 @@ public class ProjectServiceImpl implements ProjectService {
     public int saveOrUpdate(Project project) throws Exception{
 //        log.info(project.toString());
         verifyProject(project);
-        if(project.getId() != null && exists(project.getId())){
+        if(project.getPro_id() != null && exists(project.getPro_id())){
             return projectMapper.updateProject(project);
         }else {
-            if(projectMapper.findProjectByName(project.getName()) != null){
+            if(projectMapper.findProjectByName(project.getPro_name()) != null){
                 throw new Exception("项目名已被占用");
             }
             project.setStatus("等待指导导师确认");
@@ -106,22 +106,22 @@ public class ProjectServiceImpl implements ProjectService {
 //        }
 //        project.setStatus("HANDLE");
 //        projectMapper.updateProject(project);
-        projectMapper.deleteProjectById(project.getId());
-        return project.getId();
+        projectMapper.deleteProjectById(project.getPro_id());
+        return project.getPro_id();
     }
 
-    @Override
-    public int deleteByName(String name) throws Exception{
-        return projectMapper.deleteProjectByName(name);
-    }
+//    @Override
+//    public int deleteByName(String name) throws Exception{
+//        return projectMapper.deleteProjectByName(name);
+//    }
 
-    @Override
-    public List<String> getAllProjectType() {
-        return projectMapper.getAllProjectType();
-    }
+//    @Override
+//    public List<String> getAllProjectType() {
+//        return projectMapper.getAllProjectType();
+//    }
 
     private void verifyProject(Project project) throws Exception{
-        if(project.getName() == null){
+        if(project.getPro_name() == null){
             throw new Exception("项目名称不得为空");
         }
         if(project.getType() == null){

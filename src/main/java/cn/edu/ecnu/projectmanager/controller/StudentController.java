@@ -4,7 +4,7 @@ import cn.edu.ecnu.projectmanager.common.JsonResult;
 import cn.edu.ecnu.projectmanager.common.PageJson;
 import cn.edu.ecnu.projectmanager.entity.Project;
 import cn.edu.ecnu.projectmanager.entity.Student;
-import cn.edu.ecnu.projectmanager.entity.Pro_stu;
+import cn.edu.ecnu.projectmanager.entity.Team;
 import cn.edu.ecnu.projectmanager.service.impl.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,12 +45,12 @@ public class StudentController {
     @GetMapping("/info")
     @ResponseBody
     public PageJson<Student> info(@SessionAttribute("user")Student student){
-        return getById(student.getId());
+        return getById(student.getStu_id());
     }
 
     @GetMapping("/info/getById")
     @ResponseBody
-    public PageJson<Student> getById(@RequestParam Integer studentId){
+    public PageJson<Student> getById(@RequestParam String studentId){
         PageJson<Student> page = new PageJson<>();
         Student student;
         try {
@@ -69,14 +69,14 @@ public class StudentController {
     @ResponseBody
     public JsonResult updateInfo(@RequestBody Student student, @SessionAttribute("user") Student studentOrigin){
         try {
-            student.setUsername(studentOrigin.getUsername());
+            student.setStu_id(studentOrigin.getStu_id());
             if(student.getPassword() == null){
                 student.setPassword(studentOrigin.getPassword());
             }
             log.info(student.toString());
             studentService.saveOrUpdate(student);
         }catch (Exception e){
-            log.error("Student {} error, origin {}", student.getUsername(), studentOrigin.getUsername());
+            log.error("Student {} error, origin {}", student.getStu_id(), studentOrigin.getStu_id());
             return JsonResult.fail(e.getMessage());
         }
         return JsonResult.ok("OK");
@@ -88,7 +88,7 @@ public class StudentController {
         JsonResult jsonResult = new JsonResult();
         try {
             projectService.saveOrUpdate(project);
-            Integer primaryKey = projectService.findByName(project.getName()).getId();
+            Integer primaryKey = projectService.findByName(project.getPro_name()).getPro_id();
             jsonResult.set("projectId", primaryKey);
             jsonResult.setOk();
             jsonResult.set("msg", "ok");
@@ -103,7 +103,7 @@ public class StudentController {
         PageJson<Project> page = new PageJson<>();
         log.info("ListProject");
         try {
-            List<Project> projectList = studentService.listProject(student.getId());
+            List<Project> projectList = studentService.listProject(student.getStu_id());
             page.setData(projectList);
             page.setCount(projectList.size());
         }catch (Exception e){
@@ -127,9 +127,9 @@ public class StudentController {
     @ResponseBody
     public JsonResult joinTeam(@RequestParam Integer teamId, @SessionAttribute("user") Student student, @SessionAttribute("role") String role){
         try {
-            String teamname = teamService.getById(teamId).getName();
+            String teamname = teamService.getById(teamId).getTeam_name();
             verifyLogin(role);
-            studentService.joinTeam(student.getId(), teamname);
+            studentService.joinTeam(student.getStu_id(), teamname);
         }catch (Exception e){
             return JsonResult.fail(e.getMessage());
         }
@@ -141,7 +141,7 @@ public class StudentController {
                                 @SessionAttribute("user") Student student){
         try {
             verifyLogin(role);
-            teamService.deleteMember(teamname, student.getId());
+            teamService.deleteMember(teamname, student.getStu_id());
         }catch (Exception e){
             return JsonResult.fail(e.getMessage());
         }
@@ -154,9 +154,9 @@ public class StudentController {
     }
     @GetMapping("/team/list")
     @ResponseBody
-    public PageJson<Pro_stu> listTeam(@SessionAttribute("user") Student student){
-        PageJson<Pro_stu> pageJson = new PageJson<>();
-        List<Pro_stu> teamList = studentService.getTeam(student.getId());
+    public PageJson<Team> listTeam(@SessionAttribute("user") Student student){
+        PageJson<Team> pageJson = new PageJson<>();
+        List<Team> teamList = studentService.getTeam(student.getStu_id());
         pageJson.setData(teamList);
         pageJson.setCount(teamList.size());
         pageJson.setCode(0);

@@ -3,7 +3,7 @@ package cn.edu.ecnu.projectmanager.controller;
 import cn.edu.ecnu.projectmanager.common.PageJson;
 import cn.edu.ecnu.projectmanager.entity.Project;
 import cn.edu.ecnu.projectmanager.entity.Student;
-import cn.edu.ecnu.projectmanager.entity.Pro_stu;
+import cn.edu.ecnu.projectmanager.entity.Team;
 import cn.edu.ecnu.projectmanager.service.impl.ProjectServiceImpl;
 import cn.edu.ecnu.projectmanager.service.impl.TeamServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -50,11 +50,11 @@ public class ProjectController {
 
     @GetMapping("/team/info")
     @ResponseBody
-    public PageJson<Pro_stu> getTeam(@RequestParam Integer projectId){
-        PageJson<Pro_stu> page = new PageJson<>();
+    public PageJson<Team> getTeam(@RequestParam Integer projectId){
+        PageJson<Team> page = new PageJson<>();
         page.setCode(0);
         page.setMsg("Success");
-        Pro_stu team = projectService.getProjectTeam(projectId);
+        Team team = projectService.getProjectTeam(projectId);
         page.getData().add(team);
         return page;
     }
@@ -64,7 +64,7 @@ public class ProjectController {
         PageJson<Student> page = new PageJson<>();
         page.setCode(0);
         page.setMsg("Success");
-        List<Student> studentList = teamService.getAllMember(projectService.getProjectTeam(projectId).getId());
+        List<Student> studentList = teamService.getAllMember(projectService.getProjectTeam(projectId).getTeam_id());
         page.setData(studentList);
         page.setCount(studentList.size());
         return page;

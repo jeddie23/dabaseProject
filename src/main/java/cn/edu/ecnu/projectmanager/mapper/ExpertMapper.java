@@ -19,13 +19,13 @@ public interface ExpertMapper {
 
     // Delete
     @Delete("delete from expert where exp_id=#{exp_id};")
-    int deleteExpertById(@Param("exp_id") Integer exp_id);
+    int deleteExpertById(@Param("exp_id") String exp_id);
 
 
     // Retrieve
     @ResultType(Expert.class)
     @Select("select * from expert where exp_id=#{exp_id};")
-    Expert findExpertById(@Param("exp_id") Integer exp_id);
+    Expert findExpertById(@Param("exp_id") String exp_id);
 
     @ResultType(Expert.class)
     @Select("select * from expert where exp_name=#{exp_name};")
@@ -47,7 +47,7 @@ public interface ExpertMapper {
     //根据expertID查看所有project
     @ResultType(Project.class)
     @Select("select * from project where exp_id=#{exp_id}")
-    List<Project> findProjectByExpertId(@Param("exp_id") Integer exp_id);
+    List<Project> findProjectByExpertId(@Param("exp_id") String exp_id);
 
 
 }

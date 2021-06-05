@@ -18,7 +18,7 @@ public interface TeacherMapper {
 
     // Retrieve
     @Select("select * from teacher where tea_id=#{tea_id};")
-    Teacher findTeacherById(@Param("tea_id") Integer tea_id);
+    Teacher findTeacherById(@Param("tea_id") String tea_id);
 
     @Select(("select * from teacher"))
     List<Teacher> listAllTeacher();
@@ -28,10 +28,12 @@ public interface TeacherMapper {
 
     //通过teacher id查看他的所有项目
     @Select("select * from project where tea_id=#{tea_id};")
-    List<Project> findProjectByTeacherId(@Param("tea_id") Integer tea_id);
+    List<Project> findProjectByTeacherId(@Param("tea_id") String tea_id);
 
     // Delete
     @Delete("delete from teacher where tea_id=#{tea_id};")
-    int deleteTeacherById(@Param("tea_id") Integer tea_id);
+    int deleteTeacherById(@Param("tea_id") String tea_id);
 
+    @Select("select * from teacher;")
+    List<Teacher> listAll();
 }

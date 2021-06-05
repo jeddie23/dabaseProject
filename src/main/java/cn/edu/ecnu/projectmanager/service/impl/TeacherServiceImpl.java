@@ -24,7 +24,7 @@ public class TeacherServiceImpl implements TeacherService {
         if(password.isEmpty()){
             throw new Exception("密码不得为空");
         }
-        Teacher user = teacherMapper.findTeacherByUsername(username);
+        Teacher user = teacherMapper.findTeacherById(username);
         if(user == null){
             log.error("student: {} doesn't exist.", username);
             throw new Exception("用户不存在");
@@ -37,7 +37,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public int saveOrUpdate(Teacher teacher) {
-        if(teacherMapper.findTeacherById(teacher.getId())!=null){
+        if(teacherMapper.findTeacherById(teacher.getTea_id())!=null){
             return teacherMapper.updateTeacher(teacher);
         }else{
             return teacherMapper.addTeacher(teacher);
@@ -48,14 +48,14 @@ public class TeacherServiceImpl implements TeacherService {
     public int add(Teacher teacher) {
         return teacherMapper.addTeacher(teacher);
     }
+//
+//    @Override
+//    public Teacher findByUsername(String username) {
+//        return teacherMapper.findTeacherById(username);
+//    }
 
     @Override
-    public Teacher findByUsername(String username) {
-        return teacherMapper.findTeacherByUsername(username);
-    }
-
-    @Override
-    public Teacher findById(Integer id) {
+    public Teacher findById(String id) {
         return teacherMapper.findTeacherById(id);
     }
 
@@ -69,23 +69,23 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherMapper.listAll();
     }
 
-    @Override
-    public boolean isExisted(String username) {
-        return teacherMapper.findTeacherByUsername(username) != null;
-    }
+//    @Override
+//    public boolean isExisted(String username) {
+//        return teacherMapper.findTeacherById(username) != null;
+//    }
 
     @Override
-    public int deleteById(Integer id) {
+    public int deleteById(String id) {
         return teacherMapper.deleteTeacherById(id);
     }
 
-    @Override
-    public int deleteByUsername(String username) {
-        return teacherMapper.deleteTeacherByUsername(username);
-    }
+//    @Override
+//    public int deleteByUsername(String username) {
+//        return teacherMapper.deleteTeacherByUsername(username);
+//    }
 
     @Override
-    public List<Project> getProjectList(Integer id) {
+    public List<Project> getProjectList(String id) {
         return teacherMapper.findProjectByTeacherId(id);
     }
 }

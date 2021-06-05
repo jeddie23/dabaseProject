@@ -29,7 +29,7 @@ public class AdminStudentController {
     }
     @GetMapping("/info")
     @ResponseBody
-    PageJson<Student> getById(Integer studentId){
+    PageJson<Student> getById(String studentId){
         try {
             Student student = studentService.findById(studentId);
             PageJson<Student> studentPageJson = new PageJson<>();
@@ -54,7 +54,7 @@ public class AdminStudentController {
     }
     @PostMapping("/delete")
     @ResponseBody
-    JsonResult delete(@RequestParam Integer studentId){
+    JsonResult delete(@RequestParam String studentId){
         try {
             studentService.deleteById(studentId);
         }catch (Exception e){

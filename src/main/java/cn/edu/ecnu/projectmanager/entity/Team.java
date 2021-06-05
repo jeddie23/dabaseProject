@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "team")
 
-public class Pro_stu {
+public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "team_id")
@@ -22,5 +22,5 @@ public class Pro_stu {
     private  String team_name;
 
     @Column(name = "leader_id")
-    private  Integer leader_id;
+    private  String leader_id;
 }

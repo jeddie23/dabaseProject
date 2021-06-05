@@ -77,10 +77,10 @@ public class LoginController {
 
     @PostMapping("/register")
     @ResponseBody
-    public JsonResult register(@RequestParam String username, @RequestParam String password){
+    public JsonResult register(@RequestParam String userId, @RequestParam String password){
         Student student = new Student();
         student.setPassword(password);
-        student.setUsername(username);
+        student.setStu_id(userId);
         try {
             studentService.add(student);
             log.info(student.toString());

@@ -1,6 +1,5 @@
 package cn.edu.ecnu.projectmanager.service.impl;
 
-import cn.edu.ecnu.projectmanager.common.PageJson;
 import cn.edu.ecnu.projectmanager.entity.Expert;
 import cn.edu.ecnu.projectmanager.entity.Project;
 import cn.edu.ecnu.projectmanager.mapper.ExpertMapper;
@@ -21,26 +20,26 @@ public class ExpertServiceImpl implements ExpertService {
     private ProjectMapper projectMapper;
 
     @Override
-    public Expert login(String username, String password) throws Exception {
-        if(username.isEmpty()){
+    public Expert login(String userId, String password) throws Exception {
+        if(userId.isEmpty()){
             throw new Exception("用户名不得为空");
         }
         if(password.isEmpty()){
             throw new Exception("密码不得为空");
         }
-        Expert user = expertMapper.findExpertByUsername(username);
+        Expert user = expertMapper.findExpertById(userId);
         if(user == null){
-            log.error("expert: {} doesn't exist.", username);
+            log.error("expert: {} doesn't exist.", userId);
             throw new Exception("用户不存在");
         }else if(!user.getPassword().equals(password)){
-            log.error("expert: {} password wrong.", username);
+            log.error("expert: {} password wrong.", userId);
             throw new Exception("密码错误");
         }
         return user;
     }
     @Override
     public int saveOrUpdate(Expert expert) throws Exception{
-        if(isExisted(expert.getUsername())){
+        if(isExisted(expert.getExp_name())){
             verify(expert);
             return expertMapper.updateExpert(expert);
         }else {
@@ -50,7 +49,7 @@ public class ExpertServiceImpl implements ExpertService {
 
     @Override
     public int add(Expert expert) throws Exception{
-        if(findByUsername(expert.getUsername())!= null){
+        if(findByUserId(expert.getExp_id())!= null){
             throw new Exception("用户名被占用");
         }
         verify(expert);
@@ -58,8 +57,8 @@ public class ExpertServiceImpl implements ExpertService {
     }
 
     @Override
-    public Expert findByUsername(String username) throws Exception {
-       Expert expert =  expertMapper.findExpertByUsername(username);
+    public Expert findByUserId(String username) throws Exception {
+       Expert expert =  expertMapper.findExpertById(username);
        if(expert == null){
            throw new Exception("用户不存在");
        }
@@ -67,7 +66,7 @@ public class ExpertServiceImpl implements ExpertService {
     }
 
     @Override
-    public Expert findById(Integer id) {
+    public Expert findById(String id) {
         return expertMapper.findExpertById(id);
     }
 
@@ -82,19 +81,19 @@ public class ExpertServiceImpl implements ExpertService {
     }
 
     @Override
-    public boolean isExisted(String username) {
-        return expertMapper.findExpertByUsername(username) != null;
+    public boolean isExisted(String exp_id) {
+        return expertMapper.findExpertById(exp_id) != null;
     }
 
     @Override
-    public int deleteById(Integer id)throws Exception {
+    public int deleteById(String id)throws Exception {
         return expertMapper.deleteExpertById(id);
     }
-
-    @Override
-    public int deleteByUsername(String username) throws Exception{
-        return expertMapper.deleteExpertByUsername(username);
-    }
+//
+//    @Override
+//    public int deleteByUsername(String username) throws Exception{
+//        return expertMapper.deleteExpertByUsername(username);
+//    }
 
     @Override
     public void comment(Project project, Boolean confirm, String comment, Integer grades) throws Exception{
@@ -115,12 +114,12 @@ public class ExpertServiceImpl implements ExpertService {
             throw new Exception("未打分");
         }
         project.setGrades(grades);
-        project.setExpert_comment(comment);
+        project.setExp_comment(comment);
         projectMapper.updateProject(project);
     }
 
     @Override
-    public List<Project> listProject(Integer expertId) throws Exception{
+    public List<Project> listProject(String expertId) throws Exception{
         return expertMapper.findProjectByExpertId(expertId);
     }
 
@@ -130,13 +129,13 @@ public class ExpertServiceImpl implements ExpertService {
     }
 
     private void verify(Expert expert)throws Exception{
-        if(expert.getName().isEmpty()){
+        if(expert.getExp_name().isEmpty()){
             throw new Exception("名字不得为空");
         }
         if(expert.getPassword().isEmpty()){
             throw new Exception("密码不能为空");
         }
-        if(expert.getUsername().isEmpty()){
+        if(expert.getExp_id().isEmpty()){
             throw new Exception("用户名不能为空");
         }
     }

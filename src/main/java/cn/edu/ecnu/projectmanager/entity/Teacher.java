@@ -15,7 +15,7 @@ public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tea_id")
-    private Integer tea_id;
+    private String tea_id;
 
     @Column(name = "tea_name", nullable = false)
     private String tea_name;

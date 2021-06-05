@@ -2,8 +2,8 @@ package cn.edu.ecnu.projectmanager.controller;
 
 import cn.edu.ecnu.projectmanager.common.JsonResult;
 import cn.edu.ecnu.projectmanager.common.PageJson;
-import cn.edu.ecnu.projectmanager.entity.Pro_stu;
 import cn.edu.ecnu.projectmanager.entity.Student;
+import cn.edu.ecnu.projectmanager.entity.Team;
 import cn.edu.ecnu.projectmanager.service.impl.TeamServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class TeamController {
     @PostMapping("/add")
     @ResponseBody
     public JsonResult add(@RequestParam String teamName, @SessionAttribute("user") Student student){
-        Pro_stu team = new Pro_stu();
+        Team team = new Team();
         team.setTeam_name(teamName);
         team.setLeader_id(student.getStu_id());
         log.error(team.toString());
@@ -32,8 +32,8 @@ public class TeamController {
     }
     @GetMapping("/listall")
     @ResponseBody
-    public PageJson<Pro_stu> listAll(){
-        PageJson<Pro_stu> page = new PageJson<>();
+    public PageJson<Team> listAll(){
+        PageJson<Team> page = new PageJson<>();
         page.setCode(0);
         page.setMsg("Success");
         page.setData(teamService.listAll());

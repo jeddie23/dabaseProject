@@ -22,25 +22,26 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public int saveOrUpdate(File file){
-        if(fileMapper.findFileByName(file.getName()) != null){
+        if(fileMapper.findFileByName(file.getFile_name()) != null){
             return fileMapper.updateFile(file);
         }
         return fileMapper.addFile(file);
     }
-    @Override
-    public File getById(Integer id) {
-        return null;
-    }
 
-    @Override
-    public File getByName(String name) {
-        return null;
-    }
-
-    @Override
-    public List<File> getAllFileList() {
-        return null;
-    }
+//    @Override
+//    public File getById(Integer id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public File getByName(String name) {
+//        return null;
+//    }
+//
+//    @Override
+//    public List<File> getAllFileList() {
+//        return null;
+//    }
 
     @Override
     public int count() {

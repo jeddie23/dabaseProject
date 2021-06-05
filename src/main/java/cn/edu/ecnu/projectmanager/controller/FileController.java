@@ -60,8 +60,8 @@ public class FileController {
 
         cn.edu.ecnu.projectmanager.entity.File newFile = new cn.edu.ecnu.projectmanager.entity.File();
         newFile.setUrl(downloadUrl+"/"+fileName);
-        newFile.setProject_id(projectId);
-        newFile.setName(fileName);
+        newFile.setPro_id(projectId);
+        newFile.setFile_name(fileName);
         fileService.saveOrUpdate(newFile);
         return JsonResult.ok();
     }

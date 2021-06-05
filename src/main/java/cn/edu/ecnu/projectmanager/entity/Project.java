@@ -30,16 +30,16 @@ public class Project {
     private String type; // the type of the project
 
     @Column(name = "team_id")
-    private Integer leader_id;
+    private Integer team_id;
 
     @Column(name = "exp_id")
-    private Integer exp_id;
+    private String exp_id;
 
     @Column(name = "exp_comment")
     private String exp_comment;
 
     @Column(name = "tea_id")
-    private  Integer tea_id;
+    private String tea_id;
 
     @Column(name = "tea_comment")
     private String tea_comment;

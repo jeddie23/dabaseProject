@@ -15,7 +15,7 @@ public class Expert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "exp_id")
-    private Integer exp_id;
+    private String exp_id;
 
     @Column(name = "exp_name", nullable = false)
     private String exp_name;

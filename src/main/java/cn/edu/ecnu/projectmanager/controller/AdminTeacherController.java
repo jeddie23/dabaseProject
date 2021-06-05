@@ -18,7 +18,7 @@ public class AdminTeacherController {
 
     @GetMapping("/info")
     @ResponseBody
-    public PageJson<Teacher> info(Integer teacherId){
+    public PageJson<Teacher> info(String teacherId){
         Teacher teacher = teacherService.findById(teacherId);
         PageJson<Teacher> pageJson = new PageJson<>();
         if(teacher != null){
@@ -41,7 +41,7 @@ public class AdminTeacherController {
     }
     @PostMapping("/delete")
     @ResponseBody
-    public JsonResult delete(@RequestParam Integer teacher_id){
+    public JsonResult delete(@RequestParam String teacher_id){
         try {
             teacherService.deleteById(teacher_id);
         }catch (Exception e){

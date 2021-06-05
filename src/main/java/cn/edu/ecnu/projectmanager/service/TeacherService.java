@@ -11,12 +11,12 @@ public interface TeacherService {
     int add(Teacher teacher); // Add teacher to database
 
     //Teacher findByUsername(String username);
-    Teacher findById(Integer id);
+    Teacher findById(String id);
     List<Teacher> findByName(String name);
     List<Teacher> listAll();
     //boolean isExisted(String username);
 
-    int deleteById(Integer id);
+    int deleteById(String id);
     //int deleteByUsername(String username);
-    List<Project> getProjectList(Integer id);
+    List<Project> getProjectList(String id);
 }

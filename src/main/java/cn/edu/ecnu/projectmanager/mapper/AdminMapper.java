@@ -21,12 +21,9 @@ public interface AdminMapper {
 
     @ResultType(Admin.class)
     @Select("SELECT * FROM admin WHERE adm_id=#{adm_id};")
-    Admin getAdminById(@Param("adm_id") Integer adm_id);
-
-
-    @ResultType(Admin.class)
-    @Select("SELECT * FROM admin WHERE adm_id=#{adm_id};")
     Admin getAdminById(@Param("adm_id") String adm_id);
+
+
 
     @ResultType(Admin.class)
     @Select("SELECT * FROM admin WHERE adm_name=#{adm_name};")

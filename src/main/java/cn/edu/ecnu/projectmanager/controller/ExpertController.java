@@ -26,12 +26,12 @@ public class ExpertController {
     @GetMapping("/info")
     @ResponseBody
     public PageJson<Expert> info(@SessionAttribute("user") Expert expert){
-        return getById(expert.getId());
+        return getById(expert.getExp_id());
     }
 
     @GetMapping("/info/getById")
     @ResponseBody
-    public PageJson<Expert> getById(@RequestParam Integer expertId){
+    public PageJson<Expert> getById(@RequestParam String expertId){
         Expert expert = expertService.findById(expertId);
         PageJson<Expert> page = new PageJson<>();
         page.setCode(0);
@@ -57,7 +57,7 @@ public class ExpertController {
     public PageJson<Project> listProject(@SessionAttribute("user") Expert expert){
         PageJson<Project> page = new PageJson<>();
         try {
-            List<Project> projectList = expertService.listProject(expert.getId());
+            List<Project> projectList = expertService.listProject(expert.getExp_id());
             page.setCode(0);
             page.setData(projectList);
             page.setCount(projectList.size());
@@ -90,7 +90,7 @@ public class ExpertController {
     public JsonResult update(@RequestBody Expert expert, HttpServletRequest request, @SessionAttribute("user") Expert expertOld){
         try {
             expertOld.setPassword(expert.getPassword());
-            expertOld.setName(expert.getName());
+            expertOld.setExp_name(expert.getExp_name());
             expertOld.setEmail(expert.getEmail());
             expertService.saveOrUpdate(expertOld);
         }catch (Exception e){

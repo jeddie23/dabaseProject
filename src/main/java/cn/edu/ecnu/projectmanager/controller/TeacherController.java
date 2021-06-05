@@ -34,11 +34,11 @@ public class TeacherController {
     @GetMapping("/info")
     @ResponseBody
     public PageJson<Teacher> info(@SessionAttribute("user")Teacher teacher){
-        return getInfoById(teacher.getId());
+        return getInfoById(teacher.getTea_id());
     }
     @GetMapping("/info/getById")
     @ResponseBody
-    public PageJson<Teacher> getInfoById(Integer id){
+    public PageJson<Teacher> getInfoById(String id){
         Teacher teacher = teacherService.findById(id);
         PageJson<Teacher> page = new PageJson<>();
         page.setCode(0);
@@ -51,7 +51,7 @@ public class TeacherController {
     @ResponseBody
     public JsonResult updatePersonalInfo(@RequestBody Teacher teacher, @SessionAttribute("user") Teacher teacherOld){
         try {
-            teacherOld.setName(teacher.getName());
+            teacherOld.setTea_name(teacher.getTea_name());
             teacherOld.setPassword(teacher.getPassword());
             teacherOld.setPhone(teacher.getPhone());
             teacherOld.setSex(teacher.getSex());
@@ -81,7 +81,7 @@ public class TeacherController {
     @GetMapping("/project/list")
     @ResponseBody
     public PageJson<Project> listProject(@SessionAttribute("user") Teacher teacher){
-        List<Project> projectList = teacherService.getProjectList(teacher.getId());
+        List<Project> projectList = teacherService.getProjectList(teacher.getTea_id());
         PageJson<Project> page = new PageJson<>();
         page.setCode(0);
         page.setMsg("Success");

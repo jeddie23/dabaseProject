@@ -2,7 +2,7 @@ package cn.edu.ecnu.projectmanager.service;
 
 import cn.edu.ecnu.projectmanager.entity.File;
 import cn.edu.ecnu.projectmanager.entity.Project;
-import cn.edu.ecnu.projectmanager.entity.Pro_stu;
+import cn.edu.ecnu.projectmanager.entity.Team;
 
 import java.util.List;
 
@@ -20,6 +20,6 @@ public interface ProjectService {
     int deleteById(Integer id)throws Exception;
     //int deleteByName(String name)throws Exception;
     List<File> getFileList(Integer id);
-    Pro_stu getProjectTeam(Integer projectId);
+    Team getProjectTeam(Integer projectId);
     //List<String> getAllProjectType();
 }
