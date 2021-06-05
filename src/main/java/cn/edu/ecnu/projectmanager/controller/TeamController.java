@@ -2,16 +2,13 @@ package cn.edu.ecnu.projectmanager.controller;
 
 import cn.edu.ecnu.projectmanager.common.JsonResult;
 import cn.edu.ecnu.projectmanager.common.PageJson;
+import cn.edu.ecnu.projectmanager.entity.Pro_stu;
 import cn.edu.ecnu.projectmanager.entity.Student;
-import cn.edu.ecnu.projectmanager.entity.Team;
 import cn.edu.ecnu.projectmanager.service.impl.TeamServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import javax.json.Json;
-import javax.servlet.http.HttpSession;
 
 @Controller
 @Slf4j
@@ -22,9 +19,9 @@ public class TeamController {
     @PostMapping("/add")
     @ResponseBody
     public JsonResult add(@RequestParam String teamName, @SessionAttribute("user") Student student){
-        Team team = new Team();
-        team.setName(teamName);
-        team.setLeader_id(student.getId());
+        Pro_stu team = new Pro_stu();
+        team.setTeam_name(teamName);
+        team.setLeader_id(student.getStu_id());
         log.error(team.toString());
         try {
             teamService.add(team);
@@ -35,8 +32,8 @@ public class TeamController {
     }
     @GetMapping("/listall")
     @ResponseBody
-    public PageJson<Team> listAll(){
-        PageJson<Team> page = new PageJson<>();
+    public PageJson<Pro_stu> listAll(){
+        PageJson<Pro_stu> page = new PageJson<>();
         page.setCode(0);
         page.setMsg("Success");
         page.setData(teamService.listAll());

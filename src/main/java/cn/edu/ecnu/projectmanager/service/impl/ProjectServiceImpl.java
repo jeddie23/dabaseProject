@@ -2,7 +2,7 @@ package cn.edu.ecnu.projectmanager.service.impl;
 
 import cn.edu.ecnu.projectmanager.entity.File;
 import cn.edu.ecnu.projectmanager.entity.Project;
-import cn.edu.ecnu.projectmanager.entity.Team;
+import cn.edu.ecnu.projectmanager.entity.Pro_stu;
 import cn.edu.ecnu.projectmanager.mapper.ProjectMapper;
 import cn.edu.ecnu.projectmanager.mapper.StudentMapper;
 import cn.edu.ecnu.projectmanager.mapper.TeacherMapper;
@@ -27,8 +27,8 @@ public class ProjectServiceImpl implements ProjectService {
     private TeamMapper teamMapper;
 
     @Override
-    public Team getProjectTeam(Integer projectId) {
-        Team team = projectMapper.findTeamByLeader_id(projectMapper.findProjectById(projectId).getLeader_id());
+    public Pro_stu getProjectTeam(Integer projectId) {
+        Pro_stu team = projectMapper.findTeamByLeader_id(projectMapper.findProjectById(projectId).getLeader_id());
         return team;
     }
 

@@ -8,64 +8,43 @@ import java.util.List;
 @Mapper
 public interface ProjectMapper {
     // Create
-    @Insert("insert into project(id,name,type,grades,status,teacher_comment,expert_comment,leader_id,expert_id,teacher_id,team_id)" +
-            "values(#{id},#{name},#{type},#{grades},#{status},#{teacher_comment},#{expert_comment},#{leader_id},#{expert_id},#{teacher_id},#{team_id});")
-    @Options(useGeneratedKeys = true, keyProperty = "id")
+    @Insert("insert into project(pro_id,pro_name,status,grades,type,team_id,exp_id,exp_comment,tea_id,tea_comment)" +
+            "values(#{pro_id},#{pro_name},#{status},#{grades},#{type},#{team_id},#{exp_id},#{exp_comment},#{tea_id},#{tea_comment});")
+    @Options(useGeneratedKeys = true, keyProperty = "pro_id")
     int addProject(Project project);
 
     // Update
-    @Update("update project set name=#{name},type=#{type},grades=#{grades},status=#{status},teacher_comment=#{teacher_comment},expert_comment=#{expert_comment},leader_id=#{leader_id},expert_id=#{expert_id},teacher_id=#{teacher_id},team_id=#{team_id} where id=#{id}")
+    @Update("update project set pro_name=#{pro_name},status=#{status},type=#{type},team_id=#{team_id},exp_id=#{exp_id},exp_comment=#{exp_comment},tea_id=#{tea_id},tea_comment=#{tea_comment}where pro_id=#{pro_id}")
     int updateProject(Project project);
 
     // Retrieve
     @ResultType(Project.class)
-    @Select("select * from project where id=#{id};")
-    Project findProjectById(@Param("id") Integer id);
-@ResultType(Project.class)
-    @Select("select * from project where name=#{name};")
-    Project findProjectByName(@Param("name") String name);
+    @Select("select * from project where pro_id=#{pro_id};")
+    Project findProjectById(@Param("pro_id") Integer pro_id);
+
+    @ResultType(Project.class)
+    @Select("select * from project where pro_name=#{pro_name};")
+    Project findProjectByName(@Param("pro_name") String pro_name);
 
     @Select("select distinct type from project")
     List<String> getAllProjectType();
+
     @Select("select * from project")
     List<Project> getAllProject();
+
     @Select("select count(*) from project")
     int count();
-    //通过小组Id查项目
-    @ResultType(Project.class)
-    @Select("select * from project where team_id=#{team_id};")
-    Project findProjectByTeamId(@Param("team_id") Integer team_id);
-
-    //通过小组名查项目
-    @ResultType(Project.class)
-    @Select("select * from project where team_id in (select id from team where name=#{name});")
-    Project findProjectByTeamName(@Param("name") String name);
 
     //根据项目ID查看所有file
     @ResultType(File.class)
-    @Select("select * from file where project_id=#{project_id};")
-    List<File> findFileByProjectId(@Param("project_id") Integer project_id);
-
-    //通过leader_id查看小组信息
-    @ResultType(Team.class)
-    @Select("select * from Team where leader_id=#{leader_id};")
-    Team findTeamByLeader_id(@Param("leader_id") Integer leader_id);
-
-    //通过teacherID获得老师信息
-    @ResultType(Teacher.class)
-    @Select("select * from teacher where id=#{teacher_id};")
-    Teacher findTeacherByTeacher(@Param("teacher_id") Integer teacher_id);
-
-    //通过expertID获得专家信息
-    @ResultType(Expert.class)
-    @Select("select * from teacher where id=#{expert_id};")
-    Expert findExpertByExpert(@Param("expert_id") Integer expert_id);
+    @Select("select * from file where pro_id=#{pro_id};")
+    List<File> findFileByProjectId(@Param("pro_id") Integer pro_id);
 
 
     // Delete
-    @Delete("delete from project where id=#{id};")
-    int deleteProjectById(@Param("id") Integer id);
+    @Delete("delete from project where pro_id=#{pro_id};")
+    int deleteProjectById(@Param("pro_id") Integer pro_id);
 
-    @Delete("delete from project where name=#{name};")
-    int deleteProjectByName(@Param("name") String name);
+    @Delete("delete from project where pro_name=#{pro_name};")
+    int deleteProjectByName(@Param("pro_name") String pro_name);
 }

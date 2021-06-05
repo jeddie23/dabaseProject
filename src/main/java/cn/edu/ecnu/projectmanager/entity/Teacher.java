@@ -14,16 +14,19 @@ import javax.persistence.*;
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "username", nullable = false)
-    private String username;
+    @Column(name = "tea_id")
+    private Integer tea_id;
+
+    @Column(name = "tea_name", nullable = false)
+    private String tea_name;
+
     @Column(name = "password", nullable = false)
     private String password;
+
     @Column(name = "sex")
     private String sex;
+
     @Column(name = "phone")
     private String phone;
-    @Column(name = "name", nullable = false)
-    private String name;
+
 }

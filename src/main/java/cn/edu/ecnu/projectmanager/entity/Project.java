@@ -14,28 +14,36 @@ import javax.persistence.*;
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "name", nullable = false)
-    private String name; // 项目名称
-    @Column(name = "type", nullable = false)
-    private String type; // the type of the project
-    @Column(name = "grades")
-    private Integer grades; // 项目分数
+    @Column(name = "pro_id")
+    private Integer pro_id;
+
+    @Column(name = "pro_name", nullable = false)
+    private String pro_name; // 项目名称
+
     @Column(name = "status", nullable = false)
     private String status; // current status of the project
-    @Column(name = "teacher_comment")
-    private String teacher_comment;
-    @Column(name = "expert_comment")
-    private String expert_comment;
 
+    @Column(name = "grades")
+    private Integer grades; // 项目分数
 
-    @Column(name = "leader_id")
+    @Column(name = "type", nullable = false)
+    private String type; // the type of the project
+
+    @Column(name = "team_id")
     private Integer leader_id;
-    @Column(name = "expert_id")
-    private Integer expert_id;
-    @Column(name = "teacher_id")
-    private Integer teacher_id;
-    @Column(name = "team_id", nullable = false)
-    private Integer team_id;
+
+    @Column(name = "exp_id")
+    private Integer exp_id;
+
+    @Column(name = "exp_comment")
+    private String exp_comment;
+
+    @Column(name = "tea_id")
+    private  Integer tea_id;
+
+    @Column(name = "tea_comment")
+    private String tea_comment;
+
+
+
 }

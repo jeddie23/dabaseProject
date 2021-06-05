@@ -14,22 +14,29 @@ import javax.persistence.*;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "username", nullable = false)
-    private String username; // login id
+    @Column(name = "stu_id")
+    private Integer stu_id;
+
+    @Column(name = "stu_name")
+    private String stu_name;
+
     @Column(name = "password", nullable = false)
     private String password;
-    @Column(name = "sex")
-    private String sex;
+
     @Column(name = "birth")
     private String birth;
+
+    @Column(name = "sex")
+    private String sex;
+
     @Column(name = "phone")
     private String phone;
+
     @Column(name = "grade")
     private String grade;
+
     @Column(name = "major")
     private String major;
-    @Column(name = "name")
-    private String name;
+
+
 }

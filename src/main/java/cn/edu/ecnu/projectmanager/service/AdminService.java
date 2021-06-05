@@ -12,5 +12,5 @@ public interface AdminService {
     Admin findById(Integer id);
     List<Admin> findByName(String name);
     List<Admin> listAll();
-    boolean isExisted(String username);
+    //boolean isExisted(String username);
 }

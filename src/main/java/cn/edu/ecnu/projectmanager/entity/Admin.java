@@ -13,15 +13,16 @@ import javax.persistence.*;
 @Table(name = "admin")
 public class Admin {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "username", nullable = false)
-    private String username; // login id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//primary key
+    @Column(name = "adm_id")//login id
+    private Integer adm_id;
+
     @Column(name = "password", nullable = false)
     private String password;
-    @Column(name = "name", nullable = false)
-    private String name;
+
+    @Column(name = "adm_name", nullable = false)
+    private String amd_name;
+
     @Column(name = "phone")
     private String phone;
 }

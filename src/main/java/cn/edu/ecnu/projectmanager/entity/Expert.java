@@ -14,14 +14,15 @@ import javax.persistence.*;
 public class Expert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "username", nullable = false)
-    private String username;
+    @Column(name = "exp_id")
+    private Integer exp_id;
+
+    @Column(name = "exp_name", nullable = false)
+    private String exp_name;
+
     @Column(name = "password", nullable = false)
     private String password;
-    @Column(name = "name", nullable = false)
-    private String name;
+
     @Column(name = "email", nullable = false)
     private String email;
 }

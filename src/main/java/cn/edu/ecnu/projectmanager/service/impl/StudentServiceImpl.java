@@ -2,7 +2,7 @@ package cn.edu.ecnu.projectmanager.service.impl;
 
 import cn.edu.ecnu.projectmanager.entity.Project;
 import cn.edu.ecnu.projectmanager.entity.Student;
-import cn.edu.ecnu.projectmanager.entity.Team;
+import cn.edu.ecnu.projectmanager.entity.Pro_stu;
 import cn.edu.ecnu.projectmanager.mapper.StudentMapper;
 import cn.edu.ecnu.projectmanager.mapper.TeamMapper;
 import cn.edu.ecnu.projectmanager.service.StudentService;
@@ -87,7 +87,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void joinTeam(Integer studentId, String teamname) throws Exception {
-        Team team = teamMapper.findTeamByName(teamname);
+        Pro_stu team = teamMapper.findTeamByName(teamname);
         if(team == null){
             throw new Exception("队伍不存在");
         }
@@ -125,7 +125,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Team> getTeam(Integer studentId) {
+    public List<Pro_stu> getTeam(Integer studentId) {
         return teamMapper.findTeamByStudentId(studentId);
     }
 }

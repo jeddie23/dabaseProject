@@ -9,36 +9,29 @@ import java.util.List;
 @Mapper
 public interface TeacherMapper {
     // Create
-    @Insert("insert into teacher(id,username,password,sex,phone,name) values(#{id},#{username},#{password},#{sex},#{phone}, #{name};")
+    @Insert("insert into teacher(tea_id,tea_name,password,sex,phone) values(#{sea_id},#{tea_name},#{password},#{sex},#{phone};")
     int addTeacher(Teacher teacher);
 
     // Update
-    @Update("update teacher set username=#{username},password=#{password},sex=#{sex},phone=#{phone}, name=#{name} where id=#{id};")
+    @Update("update teacher set tea_name=#{tea_name},password=#{password},sex=#{sex},phone=#{phone} where tea_id=#{tea_id};")
     int updateTeacher(Teacher teacher);
 
     // Retrieve
-    @Select("select * from teacher where id=#{id};")
-    Teacher findTeacherById(@Param("id") Integer id);
+    @Select("select * from teacher where tea_id=#{tea_id};")
+    Teacher findTeacherById(@Param("tea_id") Integer tea_id);
+
     @Select(("select * from teacher"))
-    List<Teacher> listAll();
+    List<Teacher> listAllTeacher();
 
-    @Select("select * from teacher where username=#{username};")
-    Teacher findTeacherByUsername(@Param("username") String username);
-
-    @Select("select * from teacher where name=#{name};")
-    List<Teacher> findTeacherByName(@Param("name") String name);
-
-    @Select("select * from teacher where username=#{username} and id=#{id};")
-    Teacher findTeacherByUsernameAndId(@Param("username") String username, @Param("id") Integer id);
+    @Select("select * from teacher where tea_name=#{tea_name};")
+    List<Teacher> findTeacherByName(@Param("tea_name") String tea_name);
 
     //通过teacher id查看他的所有项目
-    @Select("select * from project where teacher_id=#{id};")
-    List<Project> findProjectByTeacherId(@Param("id") Integer teacher);
+    @Select("select * from project where tea_id=#{tea_id};")
+    List<Project> findProjectByTeacherId(@Param("tea_id") Integer tea_id);
 
     // Delete
-    @Delete("delete from teacher where id=#{id};")
-    int deleteTeacherById(@Param("id") Integer id);
+    @Delete("delete from teacher where tea_id=#{tea_id};")
+    int deleteTeacherById(@Param("tea_id") Integer tea_id);
 
-    @Delete("delete from teacher where username=#{username};")
-    int deleteTeacherByUsername(@Param("username") String username);
 }

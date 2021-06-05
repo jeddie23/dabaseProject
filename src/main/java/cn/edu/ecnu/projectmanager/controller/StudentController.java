@@ -4,15 +4,13 @@ import cn.edu.ecnu.projectmanager.common.JsonResult;
 import cn.edu.ecnu.projectmanager.common.PageJson;
 import cn.edu.ecnu.projectmanager.entity.Project;
 import cn.edu.ecnu.projectmanager.entity.Student;
-import cn.edu.ecnu.projectmanager.entity.Team;
+import cn.edu.ecnu.projectmanager.entity.Pro_stu;
 import cn.edu.ecnu.projectmanager.service.impl.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.json.Json;
-import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -156,9 +154,9 @@ public class StudentController {
     }
     @GetMapping("/team/list")
     @ResponseBody
-    public PageJson<Team> listTeam(@SessionAttribute("user") Student student){
-        PageJson<Team> pageJson = new PageJson<>();
-        List<Team> teamList = studentService.getTeam(student.getId());
+    public PageJson<Pro_stu> listTeam(@SessionAttribute("user") Student student){
+        PageJson<Pro_stu> pageJson = new PageJson<>();
+        List<Pro_stu> teamList = studentService.getTeam(student.getId());
         pageJson.setData(teamList);
         pageJson.setCount(teamList.size());
         pageJson.setCode(0);

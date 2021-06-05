@@ -23,7 +23,7 @@ public class AdminServiceImpl implements AdminService {
         if(password.isEmpty()){
             throw new Exception("密码不得为空");
         }
-        Admin user = adminMapper.getAdminByUsername(username);
+        Admin user = adminMapper.getAdminById(username);
         if(user == null){
             log.error("admin: {} doesn't exist.", username);
             throw new Exception("用户不存在");
@@ -45,7 +45,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Admin findByUsername(String username) {
-        return adminMapper.getAdminByUsername(username);
+        return adminMapper.getAdminById(username);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<Admin> findByName(String name) {
-        return adminMapper.getAdminByName(name);
+        return adminMapper.getAdminByAdmName(name);
     }
 
     @Override
@@ -63,9 +63,9 @@ public class AdminServiceImpl implements AdminService {
         return adminMapper.getAllAdmin();
     }
 
-    @Override
-    public boolean isExisted(String username) {
-        Admin admin = findByUsername(username);
-        return admin != null;
-    }
+//    @Override
+//    public boolean isExisted(String username) {
+//        Admin admin = findByUsername(username);
+//        return admin != null;
+//    }
 }

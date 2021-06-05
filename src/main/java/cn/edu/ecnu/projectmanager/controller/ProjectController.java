@@ -3,7 +3,7 @@ package cn.edu.ecnu.projectmanager.controller;
 import cn.edu.ecnu.projectmanager.common.PageJson;
 import cn.edu.ecnu.projectmanager.entity.Project;
 import cn.edu.ecnu.projectmanager.entity.Student;
-import cn.edu.ecnu.projectmanager.entity.Team;
+import cn.edu.ecnu.projectmanager.entity.Pro_stu;
 import cn.edu.ecnu.projectmanager.service.impl.ProjectServiceImpl;
 import cn.edu.ecnu.projectmanager.service.impl.TeamServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -51,11 +50,11 @@ public class ProjectController {
 
     @GetMapping("/team/info")
     @ResponseBody
-    public PageJson<Team> getTeam(@RequestParam Integer projectId){
-        PageJson<Team> page = new PageJson<>();
+    public PageJson<Pro_stu> getTeam(@RequestParam Integer projectId){
+        PageJson<Pro_stu> page = new PageJson<>();
         page.setCode(0);
         page.setMsg("Success");
-        Team team = projectService.getProjectTeam(projectId);
+        Pro_stu team = projectService.getProjectTeam(projectId);
         page.getData().add(team);
         return page;
     }

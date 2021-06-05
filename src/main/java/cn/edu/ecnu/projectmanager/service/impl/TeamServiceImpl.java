@@ -1,7 +1,7 @@
 package cn.edu.ecnu.projectmanager.service.impl;
 
 import cn.edu.ecnu.projectmanager.entity.Student;
-import cn.edu.ecnu.projectmanager.entity.Team;
+import cn.edu.ecnu.projectmanager.entity.Pro_stu;
 import cn.edu.ecnu.projectmanager.mapper.StudentMapper;
 import cn.edu.ecnu.projectmanager.mapper.TeamMapper;
 import cn.edu.ecnu.projectmanager.service.TeamService;
@@ -19,7 +19,7 @@ public class TeamServiceImpl implements TeamService {
     @Autowired
     StudentMapper studentMapper;
     @Override
-    public int add(Team team) throws Exception{
+    public int add(Pro_stu team) throws Exception{
         verifyTeam(team);
         if(teamMapper.findTeamByName(team.getName()) != null){
             throw new Exception("队伍名称已被占用");
@@ -37,8 +37,8 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public Team getById(Integer id) throws Exception{
-        Team team = teamMapper.findTeamById(id);
+    public Pro_stu getById(Integer id) throws Exception{
+        Pro_stu team = teamMapper.findTeamById(id);
         if(team == null){
             throw new Exception("队伍不存在");
         }
@@ -46,13 +46,13 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public Team getByName(String name){
-        Team team = teamMapper.findTeamByName(name);
+    public Pro_stu getByName(String name){
+        Pro_stu team = teamMapper.findTeamByName(name);
         return team;
     }
 
     @Override
-    public List<Team> getTeamList(int pageSize, int pageNumber) {
+    public List<Pro_stu> getTeamList(int pageSize, int pageNumber) {
         return teamMapper.getTeamList(pageNumber*pageSize, pageSize);
     }
 
@@ -84,11 +84,11 @@ public class TeamServiceImpl implements TeamService {
     }
     @Override
     public void deleteMember(String teamname, Integer studentId)throws Exception{
-        Team team = teamMapper.findTeamByName(teamname);
+        Pro_stu team = teamMapper.findTeamByName(teamname);
         verifyTeam(team);
         teamMapper.deleteMember(team.getId(), studentId);
     }
-    private void verifyTeam(Team team)throws Exception{
+    private void verifyTeam(Pro_stu team)throws Exception{
         if(team == null){
             throw new Exception("队伍不存在");
         }
@@ -105,7 +105,7 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public List<Team> listAll() {
+    public List<Pro_stu> listAll() {
         return teamMapper.listAllTeam();
     }
 

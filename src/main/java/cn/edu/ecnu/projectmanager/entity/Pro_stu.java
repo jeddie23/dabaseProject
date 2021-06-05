@@ -10,17 +10,14 @@ import javax.persistence.*;
 @Setter
 @ToString
 @Entity
-@Table(name = "team")
-
+@Table(name = "pro_stu")
 public class Pro_stu {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "team_id")
-    private Integer team_id;
+    @Column(name = "pro_id")
+    private Integer pro_id;
 
-    @Column(name = "team_name")
-    private  String team_name;
-
-    @Column(name = "leader_id")
-    private  Integer leader_id;
+    @Column(name = "stu_id", nullable = false)
+    private Integer stu_id;
 }

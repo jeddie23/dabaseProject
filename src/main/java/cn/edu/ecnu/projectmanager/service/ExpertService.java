@@ -18,7 +18,7 @@ public interface ExpertService {
 
     int deleteById(Integer id) throws Exception;
     int update(Expert e)throws Exception;
-    int deleteByUsername(String username) throws Exception;
+    //int deleteByUsername(String username) throws Exception;
     void comment(Project project, Boolean confirm, String comment, Integer grades)throws Exception;
     List<Project> listProject(Integer expertId) throws Exception;
 }

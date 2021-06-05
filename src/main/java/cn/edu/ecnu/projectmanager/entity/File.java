@@ -14,20 +14,22 @@ import javax.persistence.*;
 public class File {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "name", nullable = false)
-    private String name; // filename
+    @Column(name = "file_id")
+    private Integer file_id;
+
+    @Column(name = "file_name", nullable = false)
+    private String file_name;
+
     @Column(name = "url", nullable = false)
     private String url;  // file path
 
-    @Column(name="project_id",nullable = false)
-    private Integer project_id;//project_id
+    @Column(name="pro_id",nullable = false)
+    private Integer pro_id;//project_id
 
     public File(){
     }
-    public File(String name, String url){
-        this.name = name;
+    public File(String file_name, String url){
+        this.file_name = file_name;
         this.url = url;
     }
 }

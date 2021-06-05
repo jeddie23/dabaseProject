@@ -10,39 +10,34 @@ import java.util.List;
 @Mapper
 public interface ExpertMapper {
     // Create
-    @Insert("insert into expert(id,username,password,name,email) values(#{id},#{username},#{password},#{name},#{email});")
+    @Insert("insert into expert(exp_id,exp_name,password,email) values(#{exp_id},#{exp_name},#{password},#{email});")
     int addExpert(Expert expert);
 
     // Update
-    @Update("update expert set username=#{username},password=#{password},name=#{name},email=#{email} where id=#{id};")
+    @Update("update expert set exp_name=#{exp_name},password=#{password},email=#{email} where exp_id=#{exp_id};")
     int updateExpert(Expert expert);
 
     // Delete
-    @Delete("delete from expert where id=#{id};")
-    int deleteExpertById(@Param("id") Integer id);
-    @Delete("delete from expert where username=#{username};")
-    int deleteExpertByUsername(@Param("username") String username);
+    @Delete("delete from expert where exp_id=#{exp_id};")
+    int deleteExpertById(@Param("exp_id") Integer exp_id);
+
 
     // Retrieve
     @ResultType(Expert.class)
-    @Select("select * from expert where id=#{id};")
-    Expert findExpertById(@Param("id") Integer id);
+    @Select("select * from expert where exp_id=#{exp_id};")
+    Expert findExpertById(@Param("exp_id") Integer exp_id);
 
     @ResultType(Expert.class)
-    @Select("select * from expert where username=#{username};")
-    Expert findExpertByUsername(@Param("username") String username);
-
-    @ResultType(Expert.class)
-    @Select("select * from expert where name=#{name};")
-    List<Expert> getExpertByName(@Param("name") String name);
+    @Select("select * from expert where exp_name=#{exp_name};")
+    List<Expert> getExpertByName(@Param("exp_name") String exp_name);
 
     @ResultType(Expert.class)
     @Select("select * from expert")
     List<Expert> listAllExpert();
 
     @ResultType(Expert.class)
-    @Select("SELECT * FROM expert WHERE username=#{username} and password=#{username};")
-    Admin getExpertByUsernameAndPassword(@Param("username") String username,@Param("password") String password);
+    @Select("SELECT * FROM expert WHERE exp_id=#{exp_id} and password=#{password};")
+    Admin getExpertByIdAndPassword(@Param("exp_id") String exp_id, @Param("password") String password);
 
     // Count
     @Select("select count(*) from expert;")
@@ -51,8 +46,8 @@ public interface ExpertMapper {
 
     //根据expertID查看所有project
     @ResultType(Project.class)
-    @Select("select * from project where expert_id=#{id}")
-    List<Project> findProjectByExpertId(@Param("id") Integer id);
+    @Select("select * from project where exp_id=#{exp_id}")
+    List<Project> findProjectByExpertId(@Param("exp_id") Integer exp_id);
 
 
 }
