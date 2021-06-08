@@ -33,7 +33,7 @@
                 //console.log(student_info);
                 var name = document.querySelectorAll("span[title=student_name]");
                 //console.log(name);
-                name[0].innerHTML = student_info.stu_name;
+                name[0].innerHTML = student_info.name;
             }
             xhttp.send();
         }
@@ -51,14 +51,14 @@
                 var tableBody = "";
                 var del = '<a class="delete-button" href="#" onclick="deleteProject(this)">终止项目</a>';
                 for (const project of projects) {
-                    var edit = '<a class="edit-button" href=' + '' + project.id + '' +
-                        '"update.html?project_id=" target="_blank"' +
+                    var edit = '<a class="edit-button" href=' + '"update.html?project_id=' + project.id + '"' +
+                        ' target="_blank"' +
                         '>更新项目</a>';
                     tableBody += "<tr>";
-                    tableBody += "<td>" + project.pro_id + "</td>";
+                    tableBody += "<td>" + project.id + "</td>";
                     tableBody += "<td>" + project.type + "</td>";
                     tableBody += "<td>" + project.status + "</td>";
-                    tableBody += "<td>" + project.pro_name + " </td>";
+                    tableBody += "<td>" + project.name + " </td>";
                     tableBody += "<td>" + edit + " " + del + "</td>";
                     tableBody += "</tr>";
                 };

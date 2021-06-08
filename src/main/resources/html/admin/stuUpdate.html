@@ -110,15 +110,15 @@
                     if (xhttp.status == 200) {
                         var info = JSON.parse(xhttp.responseText).data[0];
                         //console.log(JSON.parse(xhttp.responseText));
-                        document.querySelector("input[name=id]").value = info.stu_id;
-                        //document.getElementById("id_username").value = info.username;
+                        document.querySelector("input[name=id]").value = info.id;
+                        document.getElementById("id_username").value = info.username;
                         document.getElementById("id_password").value = info.password;
                         document.getElementById("id_sex").value = info.sex;
                         document.getElementById("id_birth").value = info.birth;
                         document.getElementById("id_phone").value = info.phone;
                         document.getElementById("id_grade").value = info.grade;
                         document.getElementById("id_major").value = info.major;
-                        document.getElementById("id_studentName").value = info.stu_name;
+                        document.getElementById("id_studentName").value = info.name;
                     } else {
                         console.log(xhttp.status);
                         console.log(xhttp.responseText);

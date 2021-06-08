@@ -79,12 +79,12 @@
                     if (xhttp.status == 200) {
                         var info = JSON.parse(xhttp.responseText).data[0];
                         //console.log(info);
-                        document.querySelector("input[name=id]").value = info.tea_id;
-                        //document.getElementById("id_username").value = info.username;
+                        document.querySelector("input[name=id]").value = info.id;
+                        document.getElementById("id_username").value = info.username;
                         document.getElementById("id_password").value = info.password;
                         document.getElementById("id_sex").value = info.sex;
                         document.getElementById("id_phone").value = info.phone;
-                        document.getElementById("id_name").value = info.tea_name;
+                        document.getElementById("id_name").value = info.name;
                     } else {
                         console.log(xhttp.status);
                         console.log(xhttp.responseText);

@@ -94,15 +94,15 @@
             xhttp.onload = function() {
                 var info = JSON.parse(xhttp.responseText).data[0];
                 console.log(JSON.parse(xhttp.responseText));
-                document.querySelector("input[name=id]").value = info.stu_id;
-                //document.querySelector("input[name=username]").value = info.username;
+                document.querySelector("input[name=id]").value = info.id;
+                // document.querySelector("input[name=username]").value = info.username;
                 document.getElementById("id_password").value = info.password;
                 document.getElementById("id_sex").value = info.sex;
                 document.getElementById("id_birth").value = info.birth;
                 document.getElementById("id_phone").value = info.phone;
                 document.getElementById("id_grade").value = info.grade;
                 document.getElementById("id_major").value = info.major;
-                document.getElementById("id_studentName").value = info.stu_name;
+                document.getElementById("id_studentName").value = info.name;
             }
             xhttp.send();
         }
@@ -280,7 +280,6 @@
                 base: '../../static/js/'
             }).use('student/main');
         </script>
-    </div>
 </body>
 
 </html>

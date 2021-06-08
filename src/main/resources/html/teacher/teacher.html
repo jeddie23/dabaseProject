@@ -105,8 +105,8 @@
                 var tableBody = "";
                 //var del = '<a class="delete-button" href="#" onclick="deleteProject(this)">终止项目</a>';
                 for (const project of projects) {
-                    var comment = '<a class="comment-button" href=' + '' + project.id +
-                        '' + '"confirm.html?project_id=" target="_blank"' +
+                    var comment = '<a class="comment-button" href=' + '"confirm.html?project_id=' + project.id +
+                        '"' + ' target="_blank"' +
                         '>确认选题</a>';
                     tableBody += "<tr>";
                     tableBody += "<td>" + project.id + "</td>";

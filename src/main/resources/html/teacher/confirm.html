@@ -112,13 +112,13 @@
                 xhttp.onload = function() {
                     var info = JSON.parse(xhttp.responseText).data[0];
                     //console.log(info);
-                    document.getElementById("id_project").value = info.pro_id;
-                    document.getElementById("id_name").value = info.pro_name;
+                    document.getElementById("id_project").value = info.id;
+                    document.getElementById("id_name").value = info.name;
                     document.getElementById("id_type").value = info.type;
                     document.getElementById("id_grades").value = info.grades;
                     document.getElementById("id_status").value = info.status;
-                    document.getElementById("id_teacher_comment").value = info.tea_comment;
-                    document.getElementById("id_expert_comment").value = info.exp_comment;
+                    document.getElementById("id_teacher_comment").value = info.teacher_comment;
+                    document.getElementById("id_expert_comment").value = info.expert_comment;
                 }
                 xhttp.send();
             }

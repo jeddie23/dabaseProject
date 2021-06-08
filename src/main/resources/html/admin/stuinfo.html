@@ -92,8 +92,8 @@
                 var tableBody = "";
                 var del = '<a class="delete-button" href="#" onclick="deleteProject(this)">删除此项</a>';
                 for (const project of projects) {
-                    var edit = '<a class="edit-button" href=' + '' + project.id + '' +
-                        '"stuUpdate.html?studentId=" target="_blank"' +
+                    var edit = '<a class="edit-button" href=' + '"stuUpdate.html?studentId=' + project.id + '"' +
+                        ' target="_blank"' +
                         '>修改信息</a>';
                     tableBody += "<tr>";
                     tableBody += "<td>" + project.id + "</td>";
