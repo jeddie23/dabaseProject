@@ -31,32 +31,32 @@ public class LoginController {
 
     /**
      * 登录处理
-     * @param username
+     * @param userId
      * @param password
      * @param role
      * @return
      */
     @PostMapping("/login")
     @ResponseBody
-    public JsonResult login(@RequestParam String username,@RequestParam String password,
+    public JsonResult login(@RequestParam String userId,@RequestParam String password,
                             @RequestParam String role, HttpServletRequest request){
         try {
             HttpSession session = request.getSession();
             session.setAttribute("role", role);
-            log.info("username:{} password:{} type:{}", username, password, role);
+            log.info("userId:{} password:{} type:{}", userId, password, role);
             role = role.trim();
             // TODO:日后有机会要重构四个角色的实现, 应当使用一个通用user然后进行继承
             if(role.equals("admin")){
-                Admin login = adminService.login(username, password);
+                Admin login = adminService.login(userId, password);
                 session.setAttribute("user", login);
             }else if(role.equals("student")){
-                Student login = studentService.login(username, password);
+                Student login = studentService.login(userId, password);
                 session.setAttribute("user", login);
             }else if(role.equals("teacher")){
-                Teacher login = teacherService.login(username, password);
+                Teacher login = teacherService.login(userId, password);
                 session.setAttribute("user", login);
             }else if(role.equals("expert")){
-                Expert login = expertService.login(username, password);
+                Expert login = expertService.login(userId, password);
                 session.setAttribute("user", login);
             }else{
                 return JsonResult.fail("角色错误");

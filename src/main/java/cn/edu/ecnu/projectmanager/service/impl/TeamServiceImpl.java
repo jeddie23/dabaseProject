@@ -79,10 +79,10 @@ public class TeamServiceImpl implements TeamService {
         teamMapper.addMember(id, student.getStu_id());
     }
     @Override
-    public void deleteMember(String teamname, String studentId)throws Exception{
-        Team team = teamMapper.findTeamByName(teamname);
-        verifyTeam(team);
-        teamMapper.deleteMember(team.getTeam_id(), studentId);
+    public void deleteMember(Integer teamId, String studentId)throws Exception{
+//        Team team = teamMapper.findTeamById(teamId);
+//        verifyTeam(team);
+        teamMapper.deleteMember(teamId, studentId);
     }
     private void verifyTeam(Team team)throws Exception{
         if(team == null){

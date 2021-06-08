@@ -137,11 +137,11 @@ public class StudentController {
     }
     @PostMapping("/team/leave")
     @ResponseBody
-    public JsonResult leaveTeam(@RequestParam String teamname, @SessionAttribute("role") String role,
+    public JsonResult leaveTeam(@RequestParam Integer teamId, @SessionAttribute("role") String role,
                                 @SessionAttribute("user") Student student){
         try {
             verifyLogin(role);
-            teamService.deleteMember(teamname, student.getStu_id());
+            teamService.deleteMember(teamId, student.getStu_id());
         }catch (Exception e){
             return JsonResult.fail(e.getMessage());
         }

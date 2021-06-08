@@ -3,6 +3,7 @@ package cn.edu.ecnu.projectmanager.service.impl;
 import cn.edu.ecnu.projectmanager.entity.Project;
 import cn.edu.ecnu.projectmanager.entity.Student;
 import cn.edu.ecnu.projectmanager.entity.Team;
+import cn.edu.ecnu.projectmanager.mapper.ProjectMapper;
 import cn.edu.ecnu.projectmanager.mapper.StudentMapper;
 import cn.edu.ecnu.projectmanager.mapper.TeamMapper;
 import cn.edu.ecnu.projectmanager.service.StudentService;
@@ -19,6 +20,8 @@ public class StudentServiceImpl implements StudentService {
     private StudentMapper studentMapper;
     @Autowired
     private TeamMapper teamMapper;
+    @Autowired
+    private ProjectMapper projectMapper;
 
     @Override
     public Student login(String username, String password) throws Exception{
@@ -91,7 +94,7 @@ public class StudentServiceImpl implements StudentService {
         if(team == null){
             throw new Exception("队伍不存在");
         }
-        List<Student> students = teamMapper.findStudentByTeamId(team.getTeam_id());
+        List<Student> students = teamMapper.findStudentByTeamId( team.getTeam_id());
         for (Student student: students){
             if(student.getStu_id().equals(studentId)){
                 throw new Exception("学生已在队伍中, 请勿重复添加");

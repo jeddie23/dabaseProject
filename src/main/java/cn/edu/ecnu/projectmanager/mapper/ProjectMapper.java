@@ -22,6 +22,11 @@ public interface ProjectMapper {
     @Select("select * from project where pro_id=#{pro_id};")
     Project findProjectById(@Param("pro_id") Integer pro_id);
 
+    // Retrieve
+    @ResultType(Project.class)
+    @Select("select * from project where team_id=#{team_id};")
+    Project findProjectByTeamId(@Param("team_id") Integer team_id);
+
     @ResultType(Project.class)
     @Select("select * from project where pro_name=#{pro_name};")
     Project findProjectByName(@Param("pro_name") String pro_name);
