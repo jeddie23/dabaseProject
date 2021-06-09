@@ -392,22 +392,10 @@
                     <form onsubmit="return false;" style="color:cadetblue" id="project-form" enctype="multipart/form-data" method="post">
                         <input type="hidden" name="pro_id" id="id_project">
                         <div class="field">
-                            项目名称：<br />
-                            <input type="text" name="pro_name" id="id_name" placeholder="请输入项目名称">
-                        </div><br>
-                        <div class="field">
                             项目类型：<br />
                             <select name="type" id="id_type">
                                 <option value="null" selected disabled>请选择项目类型</option>
                             </select>
-                        </div><br>
-                        <div class="field">
-                            项目分数：<br />
-                            <input type="text" name="grades" id="id_grades" placeholder="无" readonly="readonly">
-                        </div><br>
-                        <div class="field">
-                            项目状态：<br />
-                            <input type="text" name="status" id="id_status" placeholder="无" readonly>
                         </div><br>
                         <div class="field">
                             项目指导老师：<br />
@@ -426,6 +414,18 @@
                             <select name="team_id" id="id_team">
                                 <option value="null" selected disabled>请选择项目所属队伍</option>
                             </select>
+                        </div><br>
+                        <div class="field">
+                            项目名称：<br />
+                            <input type="text" name="pro_name" id="id_name" placeholder="请输入项目名称">
+                        </div><br>
+                        <div class="field">
+                            项目分数：<br />
+                            <input type="text" name="grades" id="id_grades" placeholder="无" readonly="readonly">
+                        </div><br>
+                        <div class="field">
+                            项目状态：<br />
+                            <input type="text" name="status" id="id_status" placeholder="无" readonly>
                         </div><br>
                         <div class="field">
                             项目指导老师评论：<br />
@@ -470,7 +470,7 @@
     </div>
     <!--底部信息-->
     <!-- <div class="layui-footer">
-        <p style="line-height:44px;text-align:center;">华东师范大学 © 2020 - 项目信息管理平台</p>
+        <p style="line-height:44px;text-align:center;">华东师范大学 © 2021 - 项目信息管理平台</p>
     </div> -->
 
     <script src="../../static/js/plugins/layui/layui.js"></script>

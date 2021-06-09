@@ -290,7 +290,7 @@ label{
     height: 40px; /* 高度 */
     border-width: 0px; /* 边框宽度 */
     border-radius: 3px; /* 边框半径 */
-    background: #1E90FF; /* 背景颜色 */
+    background: #4add5e; /* 背景颜色 */
     cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
     outline: none; /* 不显示轮廓线 */
     font-family: Microsoft YaHei; /* 设置字体 */
@@ -300,7 +300,7 @@ label{
     align-items: center;
 }
 #id_button:hover { /* 鼠标移入按钮范围时改变颜色 */
-    background: #5599FF;
+    background: #26c548;
 }
 
 #id_name{
@@ -311,7 +311,7 @@ label{
 
 #id_type{
     height: 40px;
-    width: 1000px;
+    width: 200px;
     background: #ccd1d0;
 }
 
@@ -327,31 +327,31 @@ label{
 
 #id_teacher{
     height: 40px;
-    width: 1000px;
+    width: 200px;
     background: #ccd1d0;
 }
 
 #id_expert{
     height: 40px;
-    width: 1000px;
+    width: 200px;
     background: #ccd1d0;
 }
 
 #id_team{
     height: 40px;
-    width: 1000px;
+    width: 200px;
     background: #ccd1d0;
 }
 
 #id_teacher_comment{
     height: 200px;
-    width: 1000px;
+    width: 550px;
     background: #ccd1d0;
 }
 
 #id_expert_comment{
     height: 200px;
-    width: 1000px;
+    width: 550px;
     background: #ccd1d0;
 }
 
