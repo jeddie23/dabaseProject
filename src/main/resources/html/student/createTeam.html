@@ -82,7 +82,7 @@
             xhttp.onload = function() {
                 var student_info = JSON.parse(xhttp.responseText).data[0];
                 var name = document.querySelectorAll("span[title=student_name]");
-                name[0].innerHTML = student_info.name;
+                name[0].innerHTML = student_info.stu_name;
             }
             xhttp.send();
         }

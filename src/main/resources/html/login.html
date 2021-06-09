@@ -106,24 +106,24 @@
 </head>
 
 <body>
-    <div id="login">
-        <h1>Login</h1>
-        <form onsubmit="return false" method="post" class="register-form" action="student/student.html">
+<div id="login">
+    <h1>Login</h1>
+    <form onsubmit="return false" method="post" class="register-form" action="student/student.html">
 
-            <input type="text" placeholder="请输入通行证账号，6—16位字符" name="username">
-            <input type="password" placeholder="请设置8-64位密码，区分大小写" name="password">
-            <select name="role" class="bu" onchange="checkType();">
-                <option value="student">学生</option>
-                <option value="admin">管理员</option>
-                <option value="expert">评审导师</option>
-                <option value="teacher">指导导师</option>
-            </select>
-            <br />
-            <button class="but" type="submit" id="login-button" onclick="login()">登录</button>
-            <br>
-            <button class="but" type="submit" id="register-button" onclick="register()">注册</button>
-        </form>
-    </div>
+        <input type="text" placeholder="请输入通行证账号，6—16位字符" name="userId">
+        <input type="password" placeholder="请设置8-64位密码，区分大小写" name="password">
+        <select name="role" class="bu" onchange="checkType();">
+            <option value="student">学生</option>
+            <option value="admin">管理员</option>
+            <option value="expert">评审导师</option>
+            <option value="teacher">指导导师</option>
+        </select>
+        <br />
+        <button class="but" type="submit" id="login-button" onclick="login()">登录</button>
+        <br>
+        <button class="but" type="submit" id="register-button" onclick="register()">注册</button>
+    </form>
+</div>
 </body>
 
 </html>

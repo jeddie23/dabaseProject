@@ -98,15 +98,15 @@
                 var student_info = JSON.parse(xhttp.responseText).data[0];
                 //console.log(student_info);
                 var name = document.querySelectorAll("span[title=student_name]");
-                name[0].innerHTML = student_info.name;
+                name[0].innerHTML = student_info.adm_name;
             }
             xhttp.send();
         }
 
         function getProjectInfo() {
-            getCharacterList("/teacher/listall", "id_teacher");
-            getCharacterList("/expert/listall", "id_expert");
-            getCharacterList("/team/listall", "id_team");
+            getTeacherList("/teacher/listall", "id_teacher");
+            getExpertList("/expert/listall", "id_expert");
+            getTeamList("/team/listall", "id_team");
             getTypeList("/project/type/list", "id_type");
             if (projectId != null) {
                 var xhttp = new XMLHttpRequest();
@@ -117,16 +117,16 @@
                     if (xhttp.status == 200) {
                         var info = JSON.parse(xhttp.responseText).data[0];
                         //console.log(JSON.parse(xhttp.responseText));
-                        document.getElementById("id_project").value = info.id;
-                        document.getElementById("id_name").value = info.name;
+                        document.getElementById("id_project").value = info.pro_id;
+                        document.getElementById("id_name").value = info.pro_name;
                         document.getElementById("id_type").value = info.type;
                         document.getElementById("id_grades").value = info.grades;
                         document.getElementById("id_status").value = info.status;
-                        document.getElementById("id_teacher").value = info.teacher_id;
-                        document.getElementById("id_expert").value = info.expert_id;
+                        document.getElementById("id_teacher").value = info.tea_id;
+                        document.getElementById("id_expert").value = info.exp_id;
                         document.getElementById("id_team").value = info.team_id;
-                        document.getElementById("id_teacher_comment").value = info.teacher_comment;
-                        document.getElementById("id_expert_comment").value = info.expert_comment;
+                        document.getElementById("id_teacher_comment").value = info.tea_comment;
+                        document.getElementById("id_expert_comment").value = info.exp_comment;
                     } else {
                         console.log(xhttp.status);
                         console.log(xhttp.responseText);
@@ -136,7 +136,7 @@
             }
         }
 
-        function getCharacterList(api, id) {
+        function getTeacherList(api, id) {
             var xhttp = new XMLHttpRequest();
             xhttp.withCredentials = true;
             xhttp.open("GET", localhost + api, true);
@@ -146,8 +146,44 @@
                 var select = document.getElementById(id);
                 for (const info of list_info) {
                     var option = document.createElement('option');
-                    option.innerHTML = info.name;
-                    option.value = info.id;
+                    option.innerHTML = info.tea_name;
+                    option.value = info.tea_id;
+                    select.appendChild(option);
+                }
+            }
+            xhttp.send();
+        }
+
+        function getExpertList(api, id) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.withCredentials = true;
+            xhttp.open("GET", localhost + api, true);
+            xhttp.onload = function() {
+                var list_info = JSON.parse(xhttp.responseText).data;
+                //console.log(list_info);
+                var select = document.getElementById(id);
+                for (const info of list_info) {
+                    var option = document.createElement('option');
+                    option.innerHTML = info.exp_name;
+                    option.value = info.exp_id;
+                    select.appendChild(option);
+                }
+            }
+            xhttp.send();
+        }
+
+        function getTeamList(api, id) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.withCredentials = true;
+            xhttp.open("GET", localhost + api, true);
+            xhttp.onload = function() {
+                var list_info = JSON.parse(xhttp.responseText).data;
+                //console.log(list_info);
+                var select = document.getElementById(id);
+                for (const info of list_info) {
+                    var option = document.createElement('option');
+                    option.innerHTML = info.team_name;
+                    option.value = info.team_id;
                     select.appendChild(option);
                 }
             }
@@ -367,10 +403,10 @@
 
                     <!--                    主体内容-->
                     <form onsubmit="return false;" style="color:cadetblue" id="project-form" enctype="multipart/form-data" method="post">
-                        <input type="hidden" name="id" id="id_project">
+                        <input type="hidden" name="pro_id" id="id_project">
                         <div class="field">
                             项目名称：<br />
-                            <input type="text" name="name" id="id_name" placeholder="请输入项目名称">
+                            <input type="text" name="pro_name" id="id_name" placeholder="请输入项目名称">
                         </div><br>
                         <div class="field">
                             项目类型：<br />
@@ -395,13 +431,13 @@
                         </div><br>
                         <div class="field">
                             项目指导老师：<br />
-                            <select name="teacher_id" id="id_teacher">
+                            <select name="tea_id" id="id_teacher">
                 <option value="null" selected disabled>请选择项目指导老师</option>
               </select>
                         </div><br>
                         <div class="field">
                             评审导师：<br />
-                            <select name="expert_id" id="id_expert">
+                            <select name="exp_id" id="id_expert">
                 <option value="null" selected disabled>请选择评审导师</option>
               </select>
                         </div><br>
@@ -413,11 +449,11 @@
                         </div><br>
                         <div class="field">
                             项目指导老师评论：<br />
-                            <textarea name="teacher_comment" id="id_teacher_comment" placeholder="请输入评论"></textarea>
+                            <textarea name="tea_comment" id="id_teacher_comment" placeholder="请输入评论"></textarea>
                         </div><br>
                         <div class="field">
                             评审导师评论：<br />
-                            <textarea name="expert_comment" id="id_expert_comment" placeholder="请输入评论"></textarea>
+                            <textarea name="exp_comment" id="id_expert_comment" placeholder="请输入评论"></textarea>
                         </div><br>
                         <!-- <input type="button" value="保存" id="id_button" onclick="updateProject();" /> -->
                     </form>

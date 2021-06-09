@@ -35,7 +35,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public int add(Project project) throws Exception{
         verifyProject(project);
-        return projectMapper.addProject(project);
+        return projectMapper.addProject1(project);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class ProjectServiceImpl implements ProjectService {
             }
             project.setStatus("等待指导导师确认");
             log.info(project.toString());
-            return projectMapper.addProject(project);
+            return projectMapper.addProject1(project);
         }
     }
 
@@ -107,6 +107,7 @@ public class ProjectServiceImpl implements ProjectService {
 //        project.setStatus("HANDLE");
 //        projectMapper.updateProject(project);
         projectMapper.deleteProjectById(project.getPro_id());
+
         return project.getPro_id();
     }
 

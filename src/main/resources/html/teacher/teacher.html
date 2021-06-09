@@ -89,7 +89,7 @@
             xhttp.onload = function() {
                 var user_info = JSON.parse(xhttp.responseText).data[0];
                 var name = document.querySelectorAll("span[title=user_name]");
-                name[0].innerHTML = user_info.name;
+                name[0].innerHTML = user_info.tea_name;
             }
             xhttp.send();
         }
@@ -105,14 +105,14 @@
                 var tableBody = "";
                 //var del = '<a class="delete-button" href="#" onclick="deleteProject(this)">终止项目</a>';
                 for (const project of projects) {
-                    var comment = '<a class="comment-button" href=' + '"confirm.html?project_id=' + project.id +
+                    var comment = '<a class="comment-button" href=' + '"confirm.html?project_id=' + project.pro_id +
                         '"' + ' target="_blank"' +
                         '>确认选题</a>';
                     tableBody += "<tr>";
-                    tableBody += "<td>" + project.id + "</td>";
+                    tableBody += "<td>" + project.pro_id + "</td>";
                     tableBody += "<td>" + project.type + "</td>";
                     tableBody += "<td>" + project.status + "</td>";
-                    tableBody += "<td>" + project.name + " </td>";
+                    tableBody += "<td>" + project.pro_name + " </td>";
                     tableBody += "<td>" + comment + "</td>";
                     tableBody += "</tr>";
                 }

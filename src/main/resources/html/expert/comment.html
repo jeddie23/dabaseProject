@@ -87,7 +87,7 @@
                 //console.log(student_info);
                 var name = document.querySelectorAll("span[title=student_name]");
                 //console.log(name);
-                name[0].innerHTML = student_info.name;
+                name[0].innerHTML = student_info.exp_name;
             }
             xhttp.send();
         });
@@ -113,14 +113,14 @@
                 xhttp.open("GET", localhost + "/project/info?projectId=" + projectId, true);
                 xhttp.onload = function() {
                     var info = JSON.parse(xhttp.responseText).data[0];
-                    //console.log(info);
-                    document.getElementById("id_project").value = info.id;
-                    document.getElementById("id_name").value = info.name;
+                    console.log(info);
+                    document.getElementById("id_project").value = info.pro_id;
+                    document.getElementById("id_name").value = info.pro_name;
                     document.getElementById("id_type").value = info.type;
                     document.getElementById("id_grades").value = info.grades;
                     document.getElementById("id_status").value = info.status;
-                    document.getElementById("id_teacher_comment").value = info.teacher_comment;
-                    document.getElementById("id_expert_comment").value = info.expert_comment;
+                    document.getElementById("id_teacher_comment").value = info.tea_comment;
+                    document.getElementById("id_expert_comment").value = info.exp_comment;
                 }
                 xhttp.send();
             }
@@ -155,8 +155,8 @@
                     link = document.createElement("a");
                     br = document.createElement("br");
                     link.href = file.url;
-                    link.download = file.name;
-                    link.innerHTML = file.name;
+                    link.download = file.file_name;
+                    link.innerHTML = file.file_name;
                     //li = document.createElement("li");
                     //li.appendChild(link);
                     ul.appendChild(link);
@@ -167,13 +167,13 @@
         }
 
         function updateProject() {
-            //console.log(document.getElementById("project-form"));
+            console.log(document.getElementById("project-form"));
 
             var project = document.getElementById("project-form");
             //document.getElementById('demo').innerHTML = $(project).serialize();
             //console.log(project);
             var grades = document.getElementById("id_grades").value;
-            console.log(grades, typeof grades);
+            //console.log(grades, typeof grades);
             if (grades == null || grades == '') {
                 alert("请输入分数！");
                 return;
@@ -185,6 +185,7 @@
             xhr.onload = function() {
                 jsonResponse = JSON.parse(xhr.responseText);
                 // document.getElementById('demo').innerHTML = xhr.responseText;
+
                 if (jsonResponse.isOk == true) {
                     alert("审核完成！");
                 } else {
@@ -192,6 +193,7 @@
                 }
             }
             console.log($(project).serialize());
+
             xhr.send($(project).serialize());
         }
     </script>
@@ -284,10 +286,10 @@
 
                         <!--主体内容-->
                         <form id="project-form" method="post" onsubmit="return false;">
-                            <input type="hidden" name="projectId" id="id_project">
+                            <input type="hidden" name="pro_id" id="id_project">
                             <div class="field">
                                 项目名称：<br />
-                                <input type="text" name="name" id="id_name" placeholder="请输入项目名称" readonly>
+                                <input type="text" name="pro_name" id="id_name" placeholder="请输入项目名称" readonly>
                             </div>
                             <div class="field">
                                 项目类型：<br />
@@ -305,11 +307,11 @@
                             </div>
                             <div class="field">
                                 项目指导老师评论：<br />
-                                <textarea name="teacher_comment" id="id_teacher_comment" placeholder="请输入评论" readonly="readonly"></textarea>
+                                <textarea name="tea_comment" id="id_teacher_comment" placeholder="请输入评论" readonly="readonly"></textarea>
                             </div>
                             <div class="field">
                                 评审导师评论：<br />
-                                <textarea name="comment" id="id_expert_comment" placeholder="请输入评论"></textarea>
+                                <textarea name="exp_comment" id="id_expert_comment" placeholder="请输入评论"></textarea>
                             </div>
                             <div class="field">
                                 是否通过本次审核：<br />

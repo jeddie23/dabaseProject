@@ -75,7 +75,7 @@
             xhttp.onload = function() {
                 var student_info = JSON.parse(xhttp.responseText).data[0];
                 var name = document.querySelectorAll("span[title=student_name]");
-                name[0].innerHTML = student_info.name;
+                name[0].innerHTML = student_info.adm_name;
             }
             xhttp.send();
         }
@@ -90,14 +90,14 @@
                 var tableBody = "";
                 var del = '<a class="delete-button" href="#" onclick="deleteProject(this)">删除此项</a>';
                 for (const project of projects) {
-                    var edit = '<a class="edit-button" href=' + '"teaUpdate.html?teacherId=' + project.id + '"' +
+                    var edit = '<a class="edit-button" href=' + '"teaUpdate.html?teacherId=' + project.tea_id + '"' +
                         ' target="_blank"' +
                         '>修改信息</a>';
                     tableBody += "<tr>";
-                    tableBody += "<td>" + project.id + "</td>";
-                    tableBody += "<td>" + project.username + "</td>";
+                    tableBody += "<td>" + project.tea_id + "</td>";
+
                     tableBody += "<td>" + project.password + "</td>";
-                    tableBody += "<td>" + project.name + " </td>";
+                    tableBody += "<td>" + project.tea_name + " </td>";
                     tableBody += "<td>" + edit + " " + del + "</td>";
                     tableBody += "</tr>";
                 }
@@ -252,7 +252,7 @@
 
                             <table id="project-table">
                                 <tr>
-                                    <th>老师ID</th>
+<!--                                    <th>老师ID</th>-->
                                     <th>老师用户名</th>
                                     <th>老师密码</th>
                                     <th>老师姓名</th>

@@ -93,7 +93,7 @@
             xhttp.onload = function() {
                 var student_info = JSON.parse(xhttp.responseText).data[0];
                 var name = document.querySelectorAll("span[title=student_name]");
-                name[0].innerHTML = student_info.name;
+                name[0].innerHTML = student_info.stu_name;
             }
             xhttp.send();
         }
@@ -113,8 +113,8 @@
                 for (const team of teams) {
                     var edit = '<a class="edit-button" href="#" onclick="viewTeamMember(this)">查看成员</a>';
                     tableBody += "<tr>";
-                    tableBody += "<td>" + team.id + "</td>";
-                    tableBody += "<td>" + team.name + "</td>";
+                    tableBody += "<td>" + team.team_id + "</td>";
+                    tableBody += "<td>" + team.team_name + "</td>";
 
                     //console.log(team);
 
@@ -128,8 +128,8 @@
                             var student = jsonResponse.data[0];
                             //console.log(student.id, student.name);
                             //console.log(tableBody);
-                            tableBody += "<td>" + student.id + "</td>";
-                            tableBody += "<td>" + student.name + "</td>";
+                            tableBody += "<td>" + student.stu_id + "</td>";
+                            tableBody += "<td>" + student.stu_name + "</td>";
                             tableBody += "<td>" + edit + " " + del + "</td>";
                             tableBody += "</tr>";
 
@@ -189,7 +189,7 @@
                     var students = jsonResponse.data;
                     var student_list = "成员列表：\n";
                     for (const student of students) {
-                        student_list += student.name + "\n";
+                        student_list += student.stu_name + "\n";
                     }
                     alert(student_list);
                 } else

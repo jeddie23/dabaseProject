@@ -45,11 +45,13 @@ public class AdminStudentController {
     @PostMapping("/update")
     @ResponseBody
     JsonResult update(@RequestBody Student student){
+
         try {
             studentService.saveOrUpdate(student);
         }catch (Exception e){
             return JsonResult.fail(e.getMessage());
         }
+
         return JsonResult.ok();
     }
     @PostMapping("/delete")

@@ -71,11 +71,13 @@
         function getStudentName() {
             var xhttp = new XMLHttpRequest();
             xhttp.open("GET", localhost + "/admin/info", true);
+
             xhttp.withCredentials = true;
             xhttp.onload = function() {
                 var student_info = JSON.parse(xhttp.responseText).data[0];
+                console.log(student_info);
                 var name = document.querySelectorAll("span[title=student_name]");
-                name[0].innerHTML = student_info.name;
+                name[0].innerHTML = student_info.adm_name;
             }
             xhttp.send();
         }
@@ -86,20 +88,20 @@
             xhttp.withCredentials = true;
             xhttp.onload = function() {
                 var projects = JSON.parse(xhttp.responseText).data;
-                console.log(projects);
+                //console.log(projects);
                 var table = document.getElementById("project-table");
                 var tableBody = "";
                 var del = '<a class="delete-button" href="#" onclick="deleteProject(this)">删除项目</a>';
                 for (const project of projects) {
-                    console.log(project);
-                    var edit = '<a class="edit-button" href=' + '"proUpdate.html?projectId=' + project.id + '"' +
+                    //console.log(project);
+                    var edit = '<a class="edit-button" href=' + '"proUpdate.html?projectId=' + project.pro_id + '"' +
                         ' target="_blank"' +
                         '>修改项目</a>';
                     tableBody += "<tr>";
-                    tableBody += "<td>" + project.id + "</td>";
+                    tableBody += "<td>" + project.pro_id + "</td>";
                     tableBody += "<td>" + project.type + "</td>";
                     tableBody += "<td>" + project.status + "</td>";
-                    tableBody += "<td>" + project.name + " </td>";
+                    tableBody += "<td>" + project.pro_name + " </td>";
                     tableBody += "<td>" + edit + " " + del + "</td>";
                     tableBody += "</tr>";
                 }

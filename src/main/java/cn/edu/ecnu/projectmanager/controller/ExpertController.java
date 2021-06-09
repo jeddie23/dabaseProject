@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.Console;
 import java.util.List;
 
 @Controller
@@ -71,15 +72,16 @@ public class ExpertController {
 
     @PostMapping("/project/comment")
     @ResponseBody
-    public JsonResult comments(@RequestParam Integer grades, @RequestParam String comment,
-                               @RequestParam boolean confirm, @RequestParam Integer projectId, @SessionAttribute("role") String role){
+    public JsonResult comments(@RequestParam Integer grades, @RequestParam String exp_comment,
+                               @RequestParam boolean confirm, @RequestParam Integer pro_id, @SessionAttribute("role") String role){
         if(!role.trim().equals("expert")){
             return JsonResult.fail("权限不足");
         }
 
         try {
-            Project project = projectService.findById(projectId);
-            expertService.comment(project, confirm, comment, grades);
+            Project project = projectService.findById(pro_id);
+
+            expertService.comment(project, confirm, exp_comment, grades);
         }catch (Exception e){
             return JsonResult.fail(e.getMessage());
         }

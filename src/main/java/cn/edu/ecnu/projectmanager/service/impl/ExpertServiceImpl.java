@@ -39,10 +39,11 @@ public class ExpertServiceImpl implements ExpertService {
     }
     @Override
     public int saveOrUpdate(Expert expert) throws Exception{
-        if(isExisted(expert.getExp_name())){
+        if(isExisted(expert.getExp_id())){
             verify(expert);
             return expertMapper.updateExpert(expert);
         }else {
+            verify(expert);
             return add(expert);
         }
     }
@@ -59,9 +60,9 @@ public class ExpertServiceImpl implements ExpertService {
     @Override
     public Expert findByUserId(String username) throws Exception {
        Expert expert =  expertMapper.findExpertById(username);
-       if(expert == null){
-           throw new Exception("用户不存在");
-       }
+//       if(expert == null){
+//           throw new Exception("用户不存在");
+//       }
        return expert;
     }
 

@@ -53,7 +53,7 @@
                 //console.log(student_info);
                 var name = document.querySelectorAll("span[title=student_name]");
                 //console.log(name);
-                name[0].innerHTML = student_info.name;
+                name[0].innerHTML = student_info.tea_name;
             }
             xhttp.send();
         }
@@ -65,11 +65,11 @@
             xhttp.onload = function() {
                 var info = JSON.parse(xhttp.responseText).data[0];
                 //console.log(info);
-                document.querySelector("input[name=id]").value = info.id;
+                document.querySelector("input[name=tea_id]").value = info.tea_id;
                 document.getElementById("id_password").value = info.password;
-
+                document.getElementById("id_sex").value = info.sex;
                 document.getElementById("id_phone").value = info.phone;
-                document.getElementById("id_name").value = info.name;
+                document.getElementById("id_name").value = info.tea_name;
             }
             xhttp.send();
         }
@@ -214,7 +214,7 @@
 
 
 
-                            <input type="hidden" name="id" />
+                            <input type="hidden" name="tea_id" />
                             <div class="field">
                                 密码：<br />
                                 <input type="password" name="password" id="id_password" value="" />
@@ -229,7 +229,7 @@
                             </div>
                             <div class="field">
                                 姓名：<br />
-                                <input type="text" name="name" id="id_name" value="" />
+                                <input type="text" name="tea_name" id="id_name" value="" />
                             </div><br>
                             <input type="button" value="保存" id="id_button" />
                         </form>

@@ -119,6 +119,7 @@ public class StudentController {
         try {
             projectService.termProject(projectId);
         }catch (Exception e){
+            log.info("exception", e.getMessage());
             return JsonResult.fail(e.getMessage());
         }
         return JsonResult.ok();

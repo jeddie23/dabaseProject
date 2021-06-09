@@ -21,7 +21,7 @@ public class Admin {
     private String password;
 
     @Column(name = "adm_name", nullable = false)
-    private String amd_name;
+    private String adm_name;
 
     @Column(name = "phone")
     private String phone;

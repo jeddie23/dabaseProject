@@ -82,7 +82,7 @@
             xhttp.onload = function() {
                 var student_info = JSON.parse(xhttp.responseText).data[0];
                 var name = document.querySelectorAll("span[title=student_name]");
-                name[0].innerHTML = student_info.name;
+                name[0].innerHTML = student_info.stu_name;
             }
             xhttp.send();
         }
@@ -93,16 +93,16 @@
             xhttp.open("GET", localhost + "/student/info", true);
             xhttp.onload = function() {
                 var info = JSON.parse(xhttp.responseText).data[0];
-                console.log(JSON.parse(xhttp.responseText));
-                document.querySelector("input[name=id]").value = info.id;
-                // document.querySelector("input[name=username]").value = info.username;
+                //console.log(JSON.parse(xhttp.responseText));
+                document.querySelector("input[name=stu_name]").value = info.stu_id;
+                //document.querySelector("input[name=username]").value = info.stu_id;
                 document.getElementById("id_password").value = info.password;
                 document.getElementById("id_sex").value = info.sex;
                 document.getElementById("id_birth").value = info.birth;
                 document.getElementById("id_phone").value = info.phone;
                 document.getElementById("id_grade").value = info.grade;
                 document.getElementById("id_major").value = info.major;
-                document.getElementById("id_studentName").value = info.name;
+                document.getElementById("id_studentName").value = info.stu_name;
             }
             xhttp.send();
         }
@@ -112,15 +112,14 @@
                 $("form").serializeArray().map(function(x) {
                     if (data[x.name] !== undefined) {
                         if (!data[x.name].push) {
-                            data[x.name] = [data[x.name]];
+                            data[x.name] = [data[x.name]]
                         }
                         data[x.name].push(x.value || '');
                     } else {
                         data[x.name] = x.value || '';
                     }
                 });
-                // $("#demo").html(JSON.stringify(data));
-                //console.log(localhost);
+
                 var xhr = new XMLHttpRequest();
                 xhr.withCredentials = true;
                 xhr.open("POST", localhost + "/student/info/update", true);
@@ -250,7 +249,7 @@
                             </div>
                             <div class="field">
                                 姓名：<br />
-                                <input type="text" name="name" id="id_studentName" value="" />
+                                <input type="text" name="stu_name" id="id_studentName" value="" />
                             </div>
                             <br>
                             <input type="button" value="保存" id="id_button" />

@@ -63,8 +63,8 @@ public class TeacherController {
     }
     @PostMapping("/project/confirm")
     @ResponseBody
-    public JsonResult confirm(@RequestParam("projectId") Integer projectId, @RequestParam("comment") String comment, @RequestParam("confirm") Boolean confirm){
-        Project project = projectService.findById(projectId);
+    public JsonResult confirm(@RequestParam("pro_id") Integer pro_id, @RequestParam("tea_comment") String tea_comment, @RequestParam("confirm") Boolean confirm){
+        Project project = projectService.findById(pro_id);
         if(project == null){
             return JsonResult.fail("项目不存在");
         }
@@ -72,6 +72,7 @@ public class TeacherController {
             project.setStatus("等待项目审核与立项");
         }
         try {
+            project.setTea_comment(tea_comment);
             projectService.saveOrUpdate(project);
         }catch (Exception e){
             return JsonResult.fail(e.getMessage());

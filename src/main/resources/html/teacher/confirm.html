@@ -87,7 +87,7 @@
                 //console.log(student_info);
                 var name = document.querySelectorAll("span[title=student_name]");
                 //console.log(name);
-                name[0].innerHTML = student_info.name;
+                name[0].innerHTML = student_info.tea_name;
             }
             xhttp.send();
         });
@@ -112,13 +112,13 @@
                 xhttp.onload = function() {
                     var info = JSON.parse(xhttp.responseText).data[0];
                     //console.log(info);
-                    document.getElementById("id_project").value = info.id;
-                    document.getElementById("id_name").value = info.name;
+                    document.getElementById("id_project").value = info.pro_id;
+                    document.getElementById("id_name").value = info.pro_name;
                     document.getElementById("id_type").value = info.type;
                     document.getElementById("id_grades").value = info.grades;
                     document.getElementById("id_status").value = info.status;
-                    document.getElementById("id_teacher_comment").value = info.teacher_comment;
-                    document.getElementById("id_expert_comment").value = info.expert_comment;
+                    document.getElementById("id_teacher_comment").value = info.tea_comment;
+                    document.getElementById("id_expert_comment").value = info.exp_comment;
                 }
                 xhttp.send();
             }
@@ -151,8 +151,8 @@
                     link = document.createElement("a");
                     br = document.createElement("br");
                     link.href = file.url;
-                    link.download = file.name;
-                    link.innerHTML = file.name;
+                    link.download = file.file_name;
+                    link.innerHTML = file.file_name;
                     //li = document.createElement("li");
                     //li.appendChild(link);
                     ul.appendChild(link);
@@ -230,39 +230,6 @@
                         <a href="javascript:;"><i class="fa fa-home"></i>首页</a>
                     </li>
 
-                    <!-- <li class="layui-nav-item">
-                        <a href="javascript:;"><i class="fa fa-file-text"></i>项目管理</a>
-                        <dl class="layui-nav-child">
-                           
-
-
-
-
-                            <p align="center"><a class="create-button" href="update.html">新建项目</a></p>
-
-
-
-
-
-                        </dl>
-                    </li> -->
-
-
-                    <!--                <li class="layui-nav-item">-->
-                    <!--                    <a href="javascript:;"><i class="fa fa-user"></i>教师管理</a>-->
-                    <!--                    <dl class="layui-nav-child">-->
-                    <!--                        <dd><a href="javascript:;" data-url="../student/teacher" data-id="5">教师信息</a></dd>-->
-                    <!--                    </dl>-->
-                    <!--                </li>-->
-
-
-
-                    <!--                <li class="layui-nav-item">-->
-                    <!--                    <a href="javascript:;"><i class="fa fa-comment"></i>我的消息</a>-->
-                    <!--                    <dl class="layui-nav-child">-->
-                    <!--                        <dd><a href="javascript:;" data-url="../student/notice" data-id="4">我的消息</a></dd>-->
-                    <!--                    </dl>-->
-                    <!--                </li>-->
                 </ul>
             </div>
         </div>
@@ -287,10 +254,10 @@
 
                         <!--主体内容-->
                         <form id="project-form" method="post" onsubmit="return false;">
-                            <input type="hidden" name="projectId" id="id_project">
+                            <input type="hidden" name="pro_id" id="id_project">
                             <div class="field">
                                 项目名称：<br />
-                                <input type="text" name="name" id="id_name" placeholder="请输入项目名称" readonly>
+                                <input type="text" name="pro_name" id="id_name" placeholder="请输入项目名称" readonly>
                             </div>
                             <div class="field">
                                 项目类型：<br />
@@ -308,11 +275,11 @@
                             </div>
                             <div class="field">
                                 项目指导老师评论：<br />
-                                <textarea name="teacher_comment" id="id_teacher_comment" placeholder="请输入评论"></textarea>
+                                <textarea name="tea_comment" id="id_teacher_comment" placeholder="请输入评论"></textarea>
                             </div>
                             <div class="field">
                                 评审导师评论：<br />
-                                <textarea name="comment" id="id_expert_comment" placeholder="请输入评论" readonly="readonly"></textarea>
+                                <textarea name="exp_comment" id="id_expert_comment" placeholder="请输入评论" readonly="readonly"></textarea>
                             </div>
                             <div class="field">
                                 是否通过项目选题：<br />

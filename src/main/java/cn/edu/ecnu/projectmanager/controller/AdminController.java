@@ -30,7 +30,7 @@ public class AdminController {
     @ResponseBody
     public JsonResult update(@SessionAttribute("user")Admin adminOld, @RequestBody Admin admin){
         adminOld.setPassword(admin.getPassword());
-        adminOld.setAmd_name(admin.getAmd_name());
+        adminOld.setAdm_id(admin.getAdm_id());
         adminOld.setPhone(adminOld.getPhone());
         try{
             adminService.update(adminOld);

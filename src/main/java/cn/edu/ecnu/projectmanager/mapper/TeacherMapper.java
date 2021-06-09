@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface TeacherMapper {
     // Create
-    @Insert("insert into teacher(tea_id,tea_name,password,sex,phone) values(#{sea_id},#{tea_name},#{password},#{sex},#{phone};")
+    @Insert("insert into teacher(tea_id,tea_name,password,sex,phone) values(#{tea_id},#{tea_name},#{password},#{sex},#{phone});")
     int addTeacher(Teacher teacher);
 
     // Update
